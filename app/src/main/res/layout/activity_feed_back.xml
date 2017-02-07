@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.example.taogegou.ui_third.FeedBackActivity">
+    <RelativeLayout
+        android:id="@+id/rl_found_pwd_top"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/iv_feedback_back"
+            android:src="@mipmap/back"
+            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            />
+        <TextView
+            android:text="反馈建议"
+            android:id="@+id/tv_buy_title"
+            android:textColor="@color/main_write"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/et_feedback_write"
+        android:gravity="top"
+        android:hint="谢谢您的反馈，也可以直接连接我们客服哦,在联系我们中"
+        android:maxLength="100"
+        android:background="@drawable/background"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    <Button
+        android:id="@+id/btn_feedback_up"
+        android:layout_marginTop="@dimen/margin_max_50"
+        android:textColor="@color/main_write"
+        android:text="谢谢您的反馈"
+        android:background="@drawable/btn_angular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

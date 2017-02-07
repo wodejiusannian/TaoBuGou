@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.taogegou.ui_second.BuyActivity">
+    <RelativeLayout
+        android:id="@+id/rl_buy_top"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/iv_buy_back"
+            android:src="@mipmap/back"
+            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_buy_title"
+            android:textSize="@dimen/text_mid"
+            android:textColor="@color/main_write"
+            android:text="购买商品"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+    </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/pb_buy_loading"
+        android:background="#61fa08"
+        android:layout_below="@+id/rl_buy_top"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="5dp" />
+
+    <WebView
+        android:layout_below="@+id/pb_buy_loading"
+        android:id="@+id/wv_buy_show"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.taogegou.ui_third.FoundPWDActivity">
+    <RelativeLayout
+        android:id="@+id/rl_found_pwd_top"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/iv_found_pwd_back"
+            android:src="@mipmap/back"
+            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            />
+        <TextView
+            android:text="找回密码"
+            android:id="@+id/tv_buy_title"
+            android:textColor="@color/main_write"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_max_20"
+        android:layout_below="@+id/rl_found_pwd_top"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/et_found_pwd_phone"
+            android:layout_marginRight="@dimen/margin_max"
+            android:layout_marginLeft="@dimen/margin_max"
+            android:background="@null"
+            android:hint="手机号"
+            android:phoneNumber="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+        <TextView
+            android:background="@color/main_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <EditText
+                android:id="@+id/et_found_pwd_auth"
+                android:phoneNumber="true"
+                android:layout_marginRight="@dimen/margin_max"
+                android:layout_marginLeft="@dimen/margin_max"
+                android:background="@null"
+                android:hint="验证码"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+            <Button
+                android:id="@+id/btn_found_pwd_get_auth"
+                android:textColor="@color/main_write"
+                android:layout_margin="@dimen/margin_min"
+                android:background="@drawable/btn_angular"
+                android:text="获取验证码"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+        <TextView
+            android:background="@color/main_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <EditText
+            android:id="@+id/et_found_pwd_pwd"
+            android:layout_marginRight="@dimen/margin_max"
+            android:layout_marginLeft="@dimen/margin_max"
+            android:background="@null"
+            android:hint="新密码"
+            android:digits="0123456789abcdefghigklmnopqr
+                stuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.+-*/="
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btn_found_pwd_sure"
+            android:layout_marginLeft="@dimen/margin_max"
+            android:layout_marginRight="@dimen/margin_max"
+            android:layout_marginTop="@dimen/margin_max_50"
+            android:textColor="@color/main_write"
+            android:text="确定"
+            android:background="@drawable/btn_angular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

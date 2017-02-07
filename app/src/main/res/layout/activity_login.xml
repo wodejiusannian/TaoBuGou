@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.taogegou.ui_second.LoginActivity">
+    <RelativeLayout
+        android:id="@+id/rl_login_top"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <ImageView
+            android:id="@+id/iv_login_back"
+            android:src="@mipmap/back"
+            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            />
+        <TextView
+            android:text="淘个够登录"
+            android:id="@+id/tv_login_title"
+            android:textColor="@color/main_write"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="@dimen/margin_max_50"
+        android:layout_marginLeft="@dimen/margin_max"
+        android:layout_marginRight="@dimen/margin_max"
+        android:layout_below="@+id/rl_login_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_login_id"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/text_max"
+                android:text="@string/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_login_phone"
+                android:phoneNumber="true"
+                android:layout_marginLeft="@dimen/margin_max"
+                android:hint="请输入手机号"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_login_line1"
+            android:layout_below="@+id/ll_login_id"
+            android:background="@color/main_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:id="@+id/ll_login_pwd"
+            android:layout_marginTop="@dimen/margin_max_20"
+            android:layout_below="@+id/tv_login_line1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/text_max"
+                android:text="@string/pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_login_pwd"
+                android:digits="0123456789abcdefghigklmnopqr
+                stuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.+-*/="
+                android:password="true"
+                android:layout_marginLeft="@dimen/margin_max"
+                android:hint="请输入密码"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_login_line2"
+            android:layout_below="@+id/ll_login_pwd"
+            android:background="@color/main_gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <Button
+            android:textColor="@color/main_write"
+            android:layout_marginTop="@dimen/margin_max_20"
+            android:id="@+id/btn_login_login"
+            android:text="登录"
+            android:background="@drawable/btn_angular"
+            android:layout_below="@+id/tv_login_line2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_login_register"
+            android:layout_marginTop="@dimen/margin_max"
+            android:layout_below="@+id/btn_login_login"
+            android:text="手机快速注册"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_login_found_pwd"
+            android:layout_marginTop="@dimen/margin_max"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/btn_login_login"
+            android:text="找回密码"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</RelativeLayout>

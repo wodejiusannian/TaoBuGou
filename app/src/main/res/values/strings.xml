@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">淘不够</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="err_internet">获取数据失败，请检查网络</string>
+    <string name="id">账号</string>
+    <string name="pwd">密码</string>
+    <string name="share">推荐好友注册淘个够，去商城领取礼物</string>
+</resources>

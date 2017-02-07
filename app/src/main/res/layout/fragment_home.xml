@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <Button
+            android:id="@+id/btn_home_search"
+            android:maxLength="16"
+            android:textSize="@dimen/text_mid"
+            android:layout_marginLeft="@dimen/margin_mid"
+            android:layout_marginRight="@dimen/margin_max_50"
+            android:gravity="center_vertical"
+            android:hint="输入您想购买的宝贝（例如：女装）"
+            android:background="@color/main_write"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <ImageView
+            android:id="@+id/iv_home_search"
+            android:layout_marginRight="@dimen/margin_min"
+            android:padding="@dimen/margin_min"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="@dimen/margin_max"
+            android:layout_centerVertical="true"
+            android:src="@drawable/serach"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </RelativeLayout>
+              <android.support.design.widget.TabLayout
+                  android:id="@+id/tb_home_titles"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+              </android.support.design.widget.TabLayout>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_home_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v4.view.ViewPager>
+</LinearLayout>

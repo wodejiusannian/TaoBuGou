@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+    <!--<RelativeLayout
+        android:id="@+id/rl_result_top"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/iv_result_back"
+            android:src="@mipmap/back"
+            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            />
+        <TextView
+            android:text="搜索结果"
+            android:id="@+id/tv_buy_title"
+            android:textColor="@color/main_write"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>-->
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapse_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/main_color"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="top"
+                app:contentInsetStart="0dp"
+                android:minHeight="?attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:titleMarginTop="0dp" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/iv_result_back"
+                        android:src="@mipmap/back"
+                        android:layout_height="match_parent"
+                        android:layout_width="40dp"
+                        />
+                    <TextView
+                        android:text="搜索结果"
+                        android:id="@+id/tv_buy_title"
+                        android:textColor="@color/main_write"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_centerInParent="true"
+                        />
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+
+            <RadioGroup
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:id="@+id/rv_result_filter"
+                android:layout_below="@+id/rl_result_top"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <RadioButton
+                    android:id="@+id/rb_result_filter_standard"
+
+                    android:text="默认排序"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:background="@drawable/select_filter"
+                    android:button="@null"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:id="@+id/rb_result_filter_price"
+
+                    android:text="价格优先"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:background="@drawable/select_filter"
+                    android:layout_height="match_parent" />
+                <RadioButton
+                    android:id="@+id/rb_result_filter_many"
+                    android:text="销量优先"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:button="@null"
+                    android:background="@drawable/select_filter"
+                    android:layout_height="match_parent" />
+            </RadioGroup>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sf_result_refresh"
+        android:layout_below="@+id/rv_result_filter"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_result_show"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</android.support.design.widget.CoordinatorLayout>

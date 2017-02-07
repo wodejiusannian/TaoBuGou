@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.taogegou.ui_second.SearchActivity">
+    <RelativeLayout
+        android:id="@+id/rl_search_top"
+        android:background="@color/main_color"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <ImageView
+            android:id="@+id/iv_search_back"
+            android:src="@mipmap/back"
+            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            />
+        <EditText
+            android:id="@+id/et_search_write"
+            android:layout_toRightOf="@+id/iv_search_back"
+            android:maxLength="16"
+            android:textSize="@dimen/text_mid"
+            android:layout_marginLeft="@dimen/margin_mid"
+            android:layout_marginRight="@dimen/margin_max_50"
+            android:background="@color/main_write"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <ImageView
+            android:id="@+id/iv_search_go"
+            android:layout_marginRight="@dimen/margin_min"
+            android:padding="@dimen/margin_min"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="@dimen/margin_max"
+            android:layout_centerVertical="true"
+            android:src="@drawable/serach"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_search_hot"
+        android:padding="@dimen/margin_mid"
+        android:layout_below="@+id/rl_search_top"
+        android:text="热门搜索"
+        android:textColor="@color/main_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.example.taogegou.custom.MyRelativeLayout
+        android:id="@+id/mr_search_content"
+        android:layout_margin="@dimen/margin_mid"
+        android:layout_below="@+id/tv_search_hot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.example.taogegou.custom.MyRelativeLayout>
+</RelativeLayout>

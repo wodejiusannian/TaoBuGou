@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragment_second.Fragment_Clothing_Acc">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/sf_fragment_food_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_fragment_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</RelativeLayout>

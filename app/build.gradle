@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.1"
+
+    defaultConfig {
+        applicationId "com.example.taogegou"
+        minSdkVersion 18
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "a4085d595d1cd7aee8e9e2bd", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+
+}
+    repositories{
+        flatDir{
+            dirs 'libs'
+        }
+    }
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'cn.jiguang:jpush:2.1.8'
+    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:support-v4:24.2.1'
+    compile 'org.xutils:xutils:3.3.36'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile project(':rollviewpager')
+    //compile project(':shapeloading')
+    compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
+    compile name: 'SMSSDK-2.1.2', ext: 'aar'
+    compile name: 'SMSSDKGUI-2.1.2', ext: 'aar'
+    compile 'com.facebook.fresco:fresco:1.0.0'
+}
