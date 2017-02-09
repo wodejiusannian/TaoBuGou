@@ -3,47 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.example.taogegou.ui_second.BuyActivity">
+
     <RelativeLayout
         android:id="@+id/rl_buy_top"
-        android:background="@color/main_color"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:background="@color/main_color">
 
         <ImageView
             android:id="@+id/iv_buy_back"
-            android:src="@mipmap/back"
-            android:layout_height="match_parent"
             android:layout_width="40dp"
-            />
+            android:layout_height="match_parent"
+            android:src="@mipmap/back" />
 
         <TextView
             android:id="@+id/tv_buy_title"
-            android:textSize="@dimen/text_mid"
-            android:textColor="@color/main_write"
-            android:text="购买商品"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:gravity="center"
+            android:lines="1"
+            android:textColor="@color/main_write"
+            android:textSize="@dimen/text_mid">
 
         </TextView>
 
     </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/pb_buy_loading"
-        android:background="#61fa08"
-        android:layout_below="@+id/rl_buy_top"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="5dp" />
+        android:layout_height="5dp"
+        android:layout_below="@+id/rl_buy_top"
+        android:background="#61fa08"
+        android:visibility="gone" />
 
     <WebView
-        android:layout_below="@+id/pb_buy_loading"
         android:id="@+id/wv_buy_show"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pb_buy_loading">
 
     </WebView>
 

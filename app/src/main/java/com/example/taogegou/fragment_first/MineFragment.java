@@ -27,6 +27,7 @@ import com.example.taogegou.ui_second.LoginActivity;
 import com.example.taogegou.ui_second.SettingActivity;
 import com.example.taogegou.ui_third.ConnectionActivity;
 import com.example.taogegou.ui_third.FeedBackActivity;
+import com.example.taogegou.ui_third.MallActivity;
 import com.example.taogegou.ui_third.UseActivity;
 import com.example.taogegou.utils.ActivityUtils;
 import com.example.taogegou.utils.MySharedPreferences;
@@ -43,14 +44,14 @@ import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener, MyThirdData, ReFreshUserInfo {
-    private LinearLayout mLineShare,mUse,mFeedback,mConnection;
+    private LinearLayout mLineShare, mUse, mFeedback, mConnection,mMall;
     private RelativeLayout mUserInfo;
-    private ImageView mImageViewQQ,mImageViewWeChat,mSetting;
+    private ImageView mImageViewQQ, mImageViewWeChat, mSetting;
     private SimpleDraweeView mPhoto;
     private Login mLogin;
     private TextView mName;
     private String userId;
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -61,6 +62,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
             mName.setText(userName);
         }
     };
+
     @Override
     protected View initView() {
         View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_mine, null);
@@ -79,6 +81,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         mUse = (LinearLayout) inflate.findViewById(R.id.ll_mine_at_me_use);
         mFeedback = (LinearLayout) inflate.findViewById(R.id.ll_mine_at_me_feedback);
         mConnection = (LinearLayout) inflate.findViewById(R.id.ll_mine_at_me_connection);
+        mMall = (LinearLayout) inflate.findViewById(R.id.ll_mine_mall);
     }
 
     @Override
@@ -92,6 +95,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         mUse.setOnClickListener(this);
         mFeedback.setOnClickListener(this);
         mConnection.setOnClickListener(this);
+        mMall.setOnClickListener(this);
         MainActivity activity = (MainActivity) getActivity();
         activity.setFresh(this);
     }
@@ -110,21 +114,21 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         userId = MySharedPreferences.getUserId(getContext());
         String userInfo = MySharedPreferences.getUserInfo(getContext());
         userId = MySharedPreferences.getUserId(getContext());
-        if (!TextUtils.equals(",",userInfo)){
+        if (!TextUtils.equals(",", userInfo)) {
             String[] split = userInfo.split(",");
             String photo = split[0];
             String name = split[1];
-            if (!TextUtils.isEmpty(name)){
+            if (!TextUtils.isEmpty(name)) {
                 mName.setText(name);
             }
-            if (!TextUtils.isEmpty(photo)){
+            if (!TextUtils.isEmpty(photo)) {
                 mPhoto.setImageURI(photo);
             }
-        }else {
-            if (TextUtils.isEmpty(userId)){
+        } else {
+            if (TextUtils.isEmpty(userId)) {
                 mName.setText("注册/登录");
-            }else{
-                mName.setText("TGG_146"+userId);
+            } else {
+                mName.setText("TGG_146" + userId);
             }
             Uri parse = Uri.parse("res:///" + R.mipmap.managephoto);
             mPhoto.setImageURI(parse);
@@ -133,39 +137,42 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.ll_mine_share:
-                if (!TextUtils.isEmpty(userId)){
+                if (!TextUtils.isEmpty(userId)) {
                     String shareUrl = getShareUrl();
-                    Share.showShare(getContext(),"我是尝试分享","开始分享了","这个是内容",shareUrl,shareUrl);
-                }else{
+                    Share.showShare(getContext(), "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
+                } else {
                     noLoginButShare();
                 }
                 break;
             case R.id.rl_mine_info:
-                if (TextUtils.isEmpty(userId)){
-                    ActivityUtils.switchTo(getActivity(),LoginActivity.class);
-                }else{
-                    ActivityUtils.switchTo(getActivity(),SettingActivity.class);
+                if (TextUtils.isEmpty(userId)) {
+                    ActivityUtils.switchTo(getActivity(), LoginActivity.class);
+                } else {
+                    ActivityUtils.switchTo(getActivity(), SettingActivity.class);
                 }
                 break;
             case R.id.iv_mine_qq:
-                mLogin.whileLogin(getContext(),QQ.NAME);
+                mLogin.whileLogin(getContext(), QQ.NAME);
                 break;
             case R.id.iv_mine_wechat:
                 mLogin.whileLogin(getContext(), Wechat.NAME);
                 break;
             case R.id.iv_mine_setting:
-                ActivityUtils.switchTo(getActivity(),SettingActivity.class);
+                ActivityUtils.switchTo(getActivity(), SettingActivity.class);
                 break;
             case R.id.ll_mine_at_me_use:
-                ActivityUtils.switchTo(getActivity(),UseActivity.class);
+                ActivityUtils.switchTo(getActivity(), UseActivity.class);
                 break;
             case R.id.ll_mine_at_me_connection:
-                ActivityUtils.switchTo(getActivity(),ConnectionActivity.class);
+                ActivityUtils.switchTo(getActivity(), ConnectionActivity.class);
                 break;
             case R.id.ll_mine_at_me_feedback:
-                ActivityUtils.switchTo(getActivity(),FeedBackActivity.class);
+                ActivityUtils.switchTo(getActivity(), FeedBackActivity.class);
+                break;
+            case R.id.ll_mine_mall:
+                ActivityUtils.switchTo(getActivity(),MallActivity.class);
                 break;
             default:
 
@@ -174,8 +181,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
     }
 
 
-
-    private String  getShareUrl() {
+    private String getShareUrl() {
         String userId = MySharedPreferences.getUserId(getContext());
         String sceneUrl = Utils.HTTP_SERVER + "/test/" + Utils.APPKEY;
         String params = "";
@@ -191,22 +197,22 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void getData(final String url, final String openid, final String userName) {
-        if (openid!=null){
+        if (openid != null) {
             String thirdPath = String.format(NetConfig.LOGIN_PATH_THIRD, openid);
             RequestParams params = new RequestParams(thirdPath);
             x.http().get(params, new Callback.CommonCallback<String>() {
                 @Override
                 public void onSuccess(String result) {
-                    Log.i("TAG", "result"+result);
+                    Log.i("TAG", "result" + result);
                     int parseInt = Integer.parseInt(result);
-                    if (parseInt>0){
-                        MySharedPreferences.WriteUserId(getContext(),result);
+                    if (parseInt > 0) {
+                        MySharedPreferences.WriteUserId(getContext(), result);
                         userId = MySharedPreferences.getUserId(getContext());
-                        MySharedPreferences.WriteUserInfo(getContext(),url,userName);
+                        MySharedPreferences.WriteUserInfo(getContext(), url, userName);
                         Message message = Message.obtain();
                         Bundle bundle = new Bundle();
-                        bundle.putString("url",url);
-                        bundle.putString("userName",userName);
+                        bundle.putString("url", url);
+                        bundle.putString("userName", userName);
                         message.setData(bundle);
                         mHandler.sendMessage(message);
                     }
@@ -243,14 +249,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         mySelfDialog.setOnNoListener("去登陆", new MySelfDialog.OnNoClickListener() {
             @Override
             public void onClick() {
-                ActivityUtils.switchTo(getActivity(),LoginActivity.class);
+                ActivityUtils.switchTo(getActivity(), LoginActivity.class);
             }
         });
         mySelfDialog.setOnYesListener("继续分享", new MySelfDialog.OnYesClickListener() {
             @Override
             public void onClick() {
                 String shareUrl = getShareUrl();
-                Share.showShare(getContext(),"我是尝试分享","开始分享了","这个是内容",shareUrl,shareUrl);
+                Share.showShare(getContext(), "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
             }
         });
         mySelfDialog.show();

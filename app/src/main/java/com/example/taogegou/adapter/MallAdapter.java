@@ -18,7 +18,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.List;
 
 
-public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> {
+public class MallAdapter extends RecyclerView.Adapter<MallAdapter.MyViewHolder> {
     private List<JsonBean> mData;
     private Context mContext;
     private View.OnClickListener mListener;
@@ -28,14 +28,14 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> 
     }
 
 
-    public ShopAdapter(Context context, List<JsonBean> data) {
+    public MallAdapter(Context context, List<JsonBean> data) {
         mContext = context;
         mData = data;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_shop, null);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_fragment_mall, null);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
@@ -90,14 +90,14 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> 
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            mTextViewTitle = (TextView) itemView.findViewById(R.id.item_fragment_shop_Title);
-            mTextViewOrg_Price = (TextView) itemView.findViewById(R.id.item_fragment_shop_Org_Price);
-            mTextViewPrice = (TextView) itemView.findViewById(R.id.item_fragment_shop_price);
-            mImageViewIsTmall = (ImageView) itemView.findViewById(R.id.item_fragment_shop_IsTmall);
-            mTextViewSales_num = (TextView) itemView.findViewById(R.id.item_fragment_shop_Sales_num);
-            /*mTextViewQuan_price = (TextView) itemView.findViewById(R.id.item_fragment_shop_Quan_price);*/
-            mImageViewPic = (SimpleDraweeView) itemView.findViewById(R.id.item_fragment_shop_pic);
-            mLinearLayoutContent = (LinearLayout) itemView.findViewById(R.id.item_fragment_shop_Content);
+            mTextViewTitle = (TextView) itemView.findViewById(R.id.item_fragment_mall_Title);
+            mTextViewOrg_Price = (TextView) itemView.findViewById(R.id.item_fragment_mall_Org_Price);
+            mTextViewPrice = (TextView) itemView.findViewById(R.id.item_fragment_mall_price);
+            mImageViewIsTmall = (ImageView) itemView.findViewById(R.id.item_fragment_mall_IsTmall);
+            mTextViewSales_num = (TextView) itemView.findViewById(R.id.item_fragment_mall_Sales_num);
+            /*mTextViewQuan_price = (TextView) itemView.findViewById(R.id.item_fragment_mall_Quan_price);*/
+            mImageViewPic = (SimpleDraweeView) itemView.findViewById(R.id.item_fragment_mall_pic);
+            mLinearLayoutContent = (LinearLayout) itemView.findViewById(R.id.item_fragment_mall_Content);
         }
 
     }

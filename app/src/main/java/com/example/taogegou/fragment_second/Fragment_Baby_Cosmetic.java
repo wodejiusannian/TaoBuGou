@@ -44,13 +44,14 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
     private Callback.Cancelable cancelable;
     private int page = 1;
     private GridLayoutManager mManager;
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             mAdapter.notifyDataSetChanged();
         }
     };
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -72,6 +73,7 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
             loadMore(1);
         }
     }
+
     @Override
     protected View initView() {
         View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_food, null);
@@ -88,14 +90,14 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
     protected void initData() {
         super.initData();
         mData = new ArrayList<>();
-        mAdapter = new ShopAdapter(getActivity(),mData);
+        mAdapter = new ShopAdapter(getActivity(), mData);
     }
 
 
     @Override
     protected void setData() {
         super.setData();
-        mManager = new GridLayoutManager(getActivity(),2);
+        mManager = new GridLayoutManager(getActivity(), 2);
         mRecycleView.setAdapter(mAdapter);
         mRecycleView.setLayoutManager(mManager);
         mRecycleView.addItemDecoration(new ItemDecoration(10));
@@ -110,10 +112,10 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState== RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     // 判断最后一个条目是否出现了
                     int last = mManager.findLastVisibleItemPosition();
-                    if (last==mData.size()-1){
+                    if (last == mData.size() - 1) {
                         //如果出现了 加载下一页数据
                         loadMore(page);
                     }
@@ -138,17 +140,17 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
         cancelable = x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-            try {
-                if(pages==1) {
-                    mData.clear();
-                }
-                page++;
-                JSONObject obj = new JSONObject(result);
+                try {
+                    if (pages == 1) {
+                        mData.clear();
+                    }
+                    page++;
+                    JSONObject obj = new JSONObject(result);
                     JSONArray array = obj.getJSONArray("result");
-                    for(int i = 0; i < array.length(); i++) {
+                    for (int i = 0; i < array.length(); i++) {
                         JSONObject jb = array.getJSONObject(i);
                         String cid = jb.getString("Cid");
-                        if(TextUtils.equals("3",cid)||TextUtils.equals("2",cid)) {
+                        if (TextUtils.equals("3", cid) || TextUtils.equals("2", cid)) {
                             JsonBean bean = new JsonBean();
                             bean.setTitle(jb.getString("Title"));
                             bean.setGoodsID(jb.getString("GoodsID"));
@@ -156,16 +158,17 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
                             bean.setIsTmall(jb.getString("IsTmall"));
                             bean.setSales_num(jb.getString("Sales_num"));
                             bean.setOrg_Price(jb.getString("Org_Price"));
-                            bean.setPrice(jb.getDouble("Price")+"");
+                            bean.setPrice(jb.getDouble("Price") + "");
                             bean.setQuan_price(jb.getString("Quan_price"));
                             bean.setQuan_time(jb.getString("Quan_time"));
                             bean.setQuan_id(jb.getString("Quan_id"));
-                            mData.add(bean);}
+                            mData.add(bean);
+                        }
+                    }
+                    mAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                mAdapter.notifyDataSetChanged();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
             }
 
@@ -190,27 +193,26 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(cancelable!=null&&cancelable.isCancelled()) {
+        if (cancelable != null && cancelable.isCancelled()) {
             cancelable.cancel();
         }
     }
 
-    public String load(){
+    public String load() {
         try {
-            FileInputStream inStream= getActivity().openFileInput("taogegou.txt");
-            ByteArrayOutputStream stream=new ByteArrayOutputStream();
-            byte[] buffer=new byte[1024];
-            int length=-1;
-            while((length=inStream.read(buffer))!=-1)   {
-                stream.write(buffer,0,length);
+            FileInputStream inStream = getActivity().openFileInput("taogegou.txt");
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+            int length = -1;
+            while ((length = inStream.read(buffer)) != -1) {
+                stream.write(buffer, 0, length);
             }
             stream.close();
             inStream.close();
             return stream.toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             return null;
         }
         return null;
@@ -218,7 +220,7 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
 
     @Override
     public void onClick(View v) {
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         int tag = (int) v.getTag();
         JsonBean jsonBean = mData.get(tag);
         String url = jsonBean.getQuan_link();
@@ -226,11 +228,11 @@ public class Fragment_Baby_Cosmetic extends BaseFragment implements SwipeRefresh
         String goodsID = jsonBean.getGoodsID();
         String quan_price = jsonBean.getQuan_price();
         String quan_id = jsonBean.getQuan_id();
-        map.put("url",url);
-        map.put("GoodsID",goodsID);
-        map.put("IsTmall",isTmall);
-        map.put("quan_price",quan_price);
-        map.put("quan_id",quan_id);
-        ActivityUtils.switchTo(getActivity(),BuyActivity.class,map);
+        map.put("url", url);
+        map.put("GoodsID", goodsID);
+        map.put("IsTmall", isTmall);
+        map.put("quan_price", quan_price);
+        map.put("quan_id", quan_id);
+        ActivityUtils.switchTo(getActivity(), BuyActivity.class, map);
     }
 }

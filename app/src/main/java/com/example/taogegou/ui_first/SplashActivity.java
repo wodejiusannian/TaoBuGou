@@ -34,24 +34,25 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class SplashActivity extends AppCompatActivity implements View.OnClickListener, UtilsInternet.XCallBack{
+public class SplashActivity extends AppCompatActivity implements View.OnClickListener, UtilsInternet.XCallBack {
     private int isFirst = 0;
     private TextView mTextViewJump;
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (isFirst) {
                 case 0:
-                    ActivityUtils.switchTo(SplashActivity.this,LoadingActivity.class);
+                    ActivityUtils.switchTo(SplashActivity.this, LoadingActivity.class);
                     break;
-                case  1:
-                    ActivityUtils.switchTo(SplashActivity.this,MainActivity.class);
+                case 1:
+                    ActivityUtils.switchTo(SplashActivity.this, MainActivity.class);
                     break;
             }
             finish();
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,14 +74,14 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     public void initData() {
         String url = String.format(NetConfig.SHOP_PATH, 1);
-        UtilsInternet.getInstance().get(url,null,this);
+        UtilsInternet.getInstance().get(url, null, this);
         isFirst = MySharedPreferences.IsFirstLoading(this);
         MySharedPreferences.WriteLoading(this);
         isFresh();
     }
 
     public void setData() {
-        mHandler.sendEmptyMessageDelayed(1,3000);
+        mHandler.sendEmptyMessageDelayed(1, 3000);
     }
 
     public void setListener() {
@@ -90,13 +91,13 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case  R.id.tv_splash_jump:
+            case R.id.tv_splash_jump:
                 switch (isFirst) {
                     case 0:
-                        ActivityUtils.switchTo(SplashActivity.this,LoadingActivity.class);
+                        ActivityUtils.switchTo(SplashActivity.this, LoadingActivity.class);
                         break;
-                    case  1:
-                        ActivityUtils.switchTo(SplashActivity.this,MainActivity.class);
+                    case 1:
+                        ActivityUtils.switchTo(SplashActivity.this, MainActivity.class);
                         break;
                 }
                 finish();
@@ -108,15 +109,16 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     public void onResponse(String result) {
         save(result);
     }
-    public void save(String result){
+
+    public void save(String result) {
         try {
-            FileOutputStream outStream=this.openFileOutput("taogegou.txt",Context.MODE_PRIVATE);
+            FileOutputStream outStream = this.openFileOutput("taogegou.txt", Context.MODE_PRIVATE);
             outStream.write(result.getBytes());
             outStream.close();
         } catch (FileNotFoundException e) {
             return;
-        }catch (IOException e){
-            return ;
+        } catch (IOException e) {
+            return;
         }
 
     }
@@ -138,19 +140,19 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                     final String url = obj.getString("url");
                     String msg = obj.getString("msg");
                     String lastForce = obj.getString("lastForce");
-                    if (!TextUtils.equals(serverVersion,getVersionName())){
-                        if (TextUtils.equals("Y",lastForce)||TextUtils.equals("y",lastForce)){
+                    if (!TextUtils.equals(serverVersion, getVersionName())) {
+                        if (TextUtils.equals("Y", lastForce) || TextUtils.equals("y", lastForce)) {
                             if (DownLoadUtils.getInstance(getApplicationContext()).canDownload()) {
                                 DownloadApk.downloadApk(getApplicationContext(), url, "慧美衣橱正在更新...", "hobbees");
                             } else {
                                 DownLoadUtils.getInstance(getApplicationContext()).skipToDownloadManager();
                             }
-                        }else {
-                            if (!isFresh){
+                        } else {
+                            if (!isFresh) {
                                 MySelfDialog mDialog = new MySelfDialog(SplashActivity.this);
                                 mDialog.setTitle("是否更新");
                                 mDialog.setMessage(msg);
-                                mDialog.setOnYesListener("确定",new MySelfDialog.OnYesClickListener() {
+                                mDialog.setOnYesListener("确定", new MySelfDialog.OnYesClickListener() {
                                     @Override
                                     public void onClick() {
                                         if (DownLoadUtils.getInstance(getApplicationContext()).canDownload()) {
@@ -160,10 +162,10 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                                         }
                                     }
                                 });
-                                mDialog.setOnNoListener("取消",new MySelfDialog.OnNoClickListener() {
+                                mDialog.setOnNoListener("取消", new MySelfDialog.OnNoClickListener() {
                                     @Override
                                     public void onClick() {
-                                        instance.setBoolean("isFresh",true);
+                                        instance.setBoolean("isFresh", true);
                                     }
                                 });
                                 mDialog.show();
@@ -201,18 +203,18 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         DownloadApk.unregisterBroadcast(this);
     }
 
-    private String getVersionName(){
+    private String getVersionName() {
         // 获取packagemanager的实例
         PackageManager packageManager = getPackageManager();
         // getPackageName()是你当前类的包名，0代表是获取版本信息
         PackageInfo packInfo = null;
         try {
-            packInfo = packageManager.getPackageInfo(getPackageName(),0);
+            packInfo = packageManager.getPackageInfo(getPackageName(), 0);
             String version = packInfo.versionName;
             return version;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return  null;
+        return null;
     }
 }

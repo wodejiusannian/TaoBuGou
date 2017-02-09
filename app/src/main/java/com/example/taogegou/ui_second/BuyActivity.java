@@ -16,11 +16,12 @@ import com.example.taogegou.base.BaseActivity;
 import com.example.taogegou.config.NetConfig;
 
 public class BuyActivity extends BaseActivity implements View.OnClickListener {
-    private String url,buyUrl;
+    private String url, buyUrl;
     private WebView mWebView;
     private ImageView mImageViewBack;
     private ProgressBar mLoading;
     private TextView mTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +41,17 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         Intent intent = getIntent();
         String GoodsID = intent.getStringExtra("GoodsID");
         String quan_id = intent.getStringExtra("quan_id");
-        buyUrl = String.format(NetConfig.TRANSLATE_PATH,quan_id,GoodsID);
+        buyUrl = String.format(NetConfig.TRANSLATE_PATH, quan_id, GoodsID);
 
     }
 
     @Override
     public void setData() {
-         loadindUrl(buyUrl);
+        loadindUrl(buyUrl);
     }
 
     private void loadindUrl(String url) {
-        mWebView.setWebViewClient(new WebViewClient(){
+        mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return super.shouldOverrideUrlLoading(view, url);
@@ -63,6 +64,8 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         webSettings.setSupportZoom(true);
         //默认缩放模式
         mWebView.setInitialScale(100);
+        webSettings.setUseWideViewPort(true);
+        webSettings.setLoadWithOverviewMode(true);
 
         WebChromeClient wvcc = new WebChromeClient() {
 
@@ -75,10 +78,9 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
 
-                if(newProgress==100){
+                if (newProgress == 100) {
                     mLoading.setVisibility(View.GONE);//加载完网页进度条消失
-                }
-                else{
+                } else {
                     mLoading.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
                     mLoading.setProgress(newProgress);//设置进度值
                 }
@@ -87,7 +89,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
         };
         mWebView.setWebChromeClient(wvcc);
-        if (url!=null){
+        if (url != null) {
             mWebView.loadUrl(url);
         }
     }
@@ -99,14 +101,14 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.iv_buy_back:
                 finish();
                 break;
 
             default:
 
-            break;
+                break;
         }
     }
 }

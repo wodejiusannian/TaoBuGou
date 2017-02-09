@@ -17,7 +17,7 @@
             android:layout_width="40dp"
             />
         <TextView
-            android:text="淘个够登录"
+            android:text="淘不够登录"
             android:id="@+id/tv_login_title"
             android:textColor="@color/main_write"
             android:layout_height="wrap_content"

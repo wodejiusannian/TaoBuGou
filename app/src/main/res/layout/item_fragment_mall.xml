@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/item_fragment_shop_Content"
+    android:id="@+id/item_fragment_mall_Content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,7 +11,7 @@
         android:layout_height="200dp">
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/item_fragment_shop_pic"
+            android:id="@+id/item_fragment_mall_pic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
@@ -32,13 +32,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="立即领券购买"
+                android:text="点击兑换奖品"
                 android:textColor="@color/main_write"
                 android:textSize="@dimen/text_max" />
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/item_fragment_shop_IsTmall"
+            android:id="@+id/item_fragment_mall_IsTmall"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"
@@ -46,7 +46,7 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/item_fragment_shop_Title"
+        android:id="@+id/item_fragment_mall_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="1"
@@ -79,7 +79,7 @@
                 android:text="券后价" />
 
             <TextView
-                android:id="@+id/item_fragment_shop_price"
+                android:id="@+id/item_fragment_mall_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_min"
@@ -105,7 +105,7 @@
                 android:text="淘宝" />
 
             <TextView
-                android:id="@+id/item_fragment_shop_Org_Price"
+                android:id="@+id/item_fragment_mall_Org_Price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_min"
@@ -131,7 +131,7 @@
                 android:text="销量" />
 
             <TextView
-                android:id="@+id/item_fragment_shop_Sales_num"
+                android:id="@+id/item_fragment_mall_Sales_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_min"
@@ -142,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/item_fragment_shop_Quan_price"
+                android:id="@+id/item_fragment_mall_Quan_price"
                 android:text="100元"
                 android:padding="@dimen/margin_min"
                 android:textColor="@color/colorPrimary"
@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/item_fragment_shop_Sales_num"
+            android:id="@+id/item_fragment_mall_Sales_num"
             android:text="多少"
             android:textColor="#f48a8a"
             android:layout_width="wrap_content"

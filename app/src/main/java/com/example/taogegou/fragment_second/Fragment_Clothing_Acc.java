@@ -53,16 +53,17 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
     private int page = 1;
     private GridLayoutManager mManager;
     private RecyclerViewHeader mHeader;
-    private LinearLayout mRecommend,mLow,mFood;
+    private LinearLayout mRecommend, mLow, mFood;
 
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-           LoadMore(1);
+            LoadMore(1);
         }
     }
+
     @Override
     protected View initView() {
         View inflate = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_shop, null);
@@ -84,12 +85,12 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
     protected void initData() {
         super.initData();
         mData = new ArrayList<>();
-        mAdapter = new ShopAdapter(getActivity(),mData);
+        mAdapter = new ShopAdapter(getActivity(), mData);
         initRollViewPager();
     }
 
     private void initRollViewPager() {
-        bAdapter = new BannerAdapter(mRollPagerView,getActivity());
+        bAdapter = new BannerAdapter(mRollPagerView, getActivity());
         mRollPagerView.setAdapter(bAdapter);
         mRollPagerView.setHintView(new ColorPointHintView(getActivity(), Color.parseColor("#ac0000"), Color.WHITE));
         mRollPagerView.setPlayDelay(JUMP_TIME);
@@ -98,10 +99,10 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
     @Override
     protected void setData() {
         super.setData();
-        mManager = new GridLayoutManager(getActivity(),2);
+        mManager = new GridLayoutManager(getActivity(), 2);
         mRecycleView.setLayoutManager(mManager);
         mRecycleView.setAdapter(mAdapter);
-        mHeader.attachTo(mRecycleView,true);
+        mHeader.attachTo(mRecycleView, true);
         mRecycleView.addItemDecoration(new ItemDecoration(15));
     }
 
@@ -118,10 +119,10 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState== RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     // 判断最后一个条目是否出现了
                     int last = mManager.findLastVisibleItemPosition();
-                    if (last==mData.size()-1){
+                    if (last == mData.size() - 1) {
                         //如果出现了 加载下一页数据
                         LoadMore(page);
                     }
@@ -146,24 +147,24 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
         cancelable = x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                if (pages ==1){
+                if (pages == 1) {
                     mData.clear();
                 }
                 page++;
                 try {
                     JSONObject obj = new JSONObject(result);
                     JSONArray array = obj.getJSONArray("result");
-                    for(int i = 0; i < array.length(); i++) {
+                    for (int i = 0; i < array.length(); i++) {
                         JSONObject jb = array.getJSONObject(i);
                         String cid = jb.getString("Cid");
-                        if(TextUtils.equals("1",cid)||TextUtils.equals("5",cid)) {
+                        if (TextUtils.equals("1", cid) || TextUtils.equals("5", cid)) {
                             JsonBean bean = new JsonBean();
                             bean.setTitle(jb.getString("Title"));
                             bean.setPic(jb.getString("Pic"));
                             bean.setIsTmall(jb.getString("IsTmall"));
                             bean.setSales_num(jb.getString("Sales_num"));
                             bean.setOrg_Price(jb.getString("Org_Price"));
-                            bean.setPrice(jb.getDouble("Price")+"");
+                            bean.setPrice(jb.getDouble("Price") + "");
                             bean.setQuan_price(jb.getString("Quan_price"));
                             bean.setQuan_time(jb.getString("Quan_time"));
                             bean.setQuan_link(jb.getString("Quan_link"));
@@ -199,7 +200,7 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(cancelable!=null&&cancelable.isCancelled()) {
+        if (cancelable != null && cancelable.isCancelled()) {
             cancelable.cancel();
         }
     }
@@ -207,24 +208,24 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
 
     @Override
     public void onItemClick(int position) {
-        if (position==0){
-            ActivityUtils.switchTo(getActivity(),ZhuanPanActivity.class);
-        }else {
-            Map<String,Object> map = new HashMap<>();
-            if(position==1){
-                map.put("style","震撼首发");
-                ActivityUtils.switchTo(getActivity(),WaitActivity.class,map);
-            }else if (position==2){
-                map.put("style","优品推荐");
-                ActivityUtils.switchTo(getActivity(),WaitActivity.class,map);
+        if (position == 0) {
+            ActivityUtils.switchTo(getActivity(), ZhuanPanActivity.class);
+        } else {
+            Map<String, Object> map = new HashMap<>();
+            if (position == 1) {
+                map.put("style", "震撼首发");
+                ActivityUtils.switchTo(getActivity(), WaitActivity.class, map);
+            } else if (position == 2) {
+                map.put("style", "优品推荐");
+                ActivityUtils.switchTo(getActivity(), WaitActivity.class, map);
             }
         }
     }
 
     @Override
     public void onClick(View v) {
-        Map<String,Object> map = new HashMap<>();
-        switch(v.getId()){
+        Map<String, Object> map = new HashMap<>();
+        switch (v.getId()) {
             case R.id.item_fragment_shop_Content:
                 int tag = (int) v.getTag();
                 JsonBean jsonBean = mData.get(tag);
@@ -233,31 +234,31 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
                 String goodsID = jsonBean.getGoodsID();
                 String quan_price = jsonBean.getQuan_price();
                 String quan_id = jsonBean.getQuan_id();
-                map.put("url",url);
-                map.put("GoodsID",goodsID);
-                map.put("IsTmall",isTmall);
-                map.put("quan_price",quan_price);
-                map.put("quan_id",quan_id);
-                ActivityUtils.switchTo(getActivity(),BuyActivity.class,map);
+                map.put("url", url);
+                map.put("GoodsID", goodsID);
+                map.put("IsTmall", isTmall);
+                map.put("quan_price", quan_price);
+                map.put("quan_id", quan_id);
+                ActivityUtils.switchTo(getActivity(), BuyActivity.class, map);
                 break;
             case R.id.ll_shop_recommend:
-                map.put("moduleName","小编力荐");
-                map.put("url","http://120.77.46.28:8080/test/servlet/getGoodsRecommended?pageIndex=%d");
-                ActivityUtils.switchTo(getActivity(),ModuleActivity.class,map);
+                map.put("moduleName", "小编力荐");
+                map.put("url", "http://120.77.46.28:8080/test/servlet/getGoodsRecommended?pageIndex=%d");
+                ActivityUtils.switchTo(getActivity(), ModuleActivity.class, map);
                 break;
             case R.id.ll_shop_low:
-                map.put("moduleName","9.9包邮");
-                map.put("url","http://120.77.46.28:8080/test/servlet/get9_9Goods?pageIndex=%d");
-                ActivityUtils.switchTo(getActivity(),ModuleActivity.class,map);
+                map.put("moduleName", "9.9包邮");
+                map.put("url", "http://120.77.46.28:8080/test/servlet/get9_9Goods?pageIndex=%d");
+                ActivityUtils.switchTo(getActivity(), ModuleActivity.class, map);
                 break;
             case R.id.ll_shop_food:
-                map.put("moduleName","休闲零食");
-                map.put("url","http://120.77.46.28:8080/test/servlet/getSnacks?pageIndex=%d");
-                ActivityUtils.switchTo(getActivity(),ModuleActivity.class,map);
+                map.put("moduleName", "休闲零食");
+                map.put("url", "http://120.77.46.28:8080/test/servlet/getSnacks?pageIndex=%d");
+                ActivityUtils.switchTo(getActivity(), ModuleActivity.class, map);
                 break;
             default:
 
-            break;
+                break;
         }
 
     }
