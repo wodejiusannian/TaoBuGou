@@ -86,7 +86,8 @@
         <activity android:name=".ui_second.SearchActivity" />
         <activity android:name=".ui_third.ModuleActivity" />
         <activity android:name=".ui_third.ResultActivity" />
-        <activity android:name=".ui_third.MallActivity"></activity>
+        <activity android:name=".ui_third.MallActivity" />
+        <activity android:name=".ui_third.LogisticActivity"></activity>
     </application>
 
 </manifest>

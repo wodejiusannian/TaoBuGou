@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_logistic"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.example.taogegou.ui_third.LogisticActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_logistic_top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/main_color">
+
+        <include layout="@layout/back_btn"></include>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="中奖纪录"
+            android:textColor="@color/main_write" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_logistic_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_logistic_top">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/btn_logistic_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="去登陆"
+        android:visibility="gone" />
+
+</RelativeLayout>

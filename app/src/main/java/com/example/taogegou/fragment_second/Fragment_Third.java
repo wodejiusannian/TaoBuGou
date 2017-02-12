@@ -2,7 +2,6 @@ package com.example.taogegou.fragment_second;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -92,22 +91,19 @@ public class Fragment_Third extends BaseFragment implements UtilsInternet.XCallB
             JSONArray array = obj.getJSONArray("result");
             for (int i = 0; i < array.length(); i++) {
                 JSONObject jb = array.getJSONObject(i);
-                String cid = jb.getString("Cid");
-                if (TextUtils.equals("1", cid) || TextUtils.equals("5", cid)) {
-                    JsonBean bean = new JsonBean();
-                    bean.setTitle(jb.getString("Title"));
-                    bean.setPic(jb.getString("Pic"));
-                    bean.setIsTmall(jb.getString("IsTmall"));
-                    bean.setSales_num(jb.getString("Sales_num"));
-                    bean.setOrg_Price(jb.getString("Org_Price"));
-                    bean.setPrice(jb.getDouble("Price") + "");
-                    bean.setQuan_price(jb.getString("Quan_price"));
-                    bean.setQuan_time(jb.getString("Quan_time"));
-                    bean.setQuan_link(jb.getString("Quan_link"));
-                    bean.setGoodsID(jb.getString("GoodsID"));
-                    bean.setQuan_id(jb.getString("Quan_id"));
-                    mData.add(bean);
-                }
+                JsonBean bean = new JsonBean();
+                bean.setTitle(jb.getString("Title"));
+                bean.setPic(jb.getString("Pic"));
+                bean.setIsTmall(jb.getString("IsTmall"));
+                bean.setSales_num(jb.getString("Sales_num"));
+                bean.setOrg_Price(jb.getString("Org_Price"));
+                bean.setPrice(jb.getDouble("Price") + "");
+                bean.setQuan_price(jb.getString("Quan_price"));
+                bean.setQuan_time(jb.getString("Quan_time"));
+                bean.setQuan_link(jb.getString("Quan_link"));
+                bean.setGoodsID(jb.getString("GoodsID"));
+                bean.setQuan_id(jb.getString("Quan_id"));
+                mData.add(bean);
             }
             mAdapter.notifyDataSetChanged();
         } catch (JSONException e) {

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_10">
+
+    <TextView
+        android:id="@+id/sv_item_logistic_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_toRightOf="@+id/sv_item_logistic"
+        android:padding="@dimen/margin_2"
+        android:text="name" />
+
+    <TextView
+        android:id="@+id/sv_item_logistic_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sv_item_logistic_name"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_toRightOf="@+id/sv_item_logistic"
+        android:padding="@dimen/margin_2"
+        android:text="phone" />
+
+    <TextView
+        android:id="@+id/sv_item_logistic_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sv_item_logistic_phone"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_toRightOf="@+id/sv_item_logistic"
+        android:padding="@dimen/margin_2"
+        android:text="address" />
+
+    <TextView
+        android:id="@+id/sv_item_logistic_award_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sv_item_logistic_address"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_toRightOf="@+id/sv_item_logistic"
+        android:padding="@dimen/margin_2"
+        android:text="award_type" />
+
+    <TextView
+        android:id="@+id/tv_logistic_tran"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sv_item_logistic"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/background_logistic"
+        android:padding="@dimen/margin_10"
+        android:text="查看物流" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/sv_item_logistic"
+        android:background="@drawable/background_logistic"
+        android:padding="@dimen/margin_10"
+        android:text="确认收货" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sv_item_logistic"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        fresco:roundedCornerRadius="5dp" />
+</RelativeLayout>

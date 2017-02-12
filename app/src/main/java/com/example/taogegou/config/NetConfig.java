@@ -30,5 +30,8 @@ public interface NetConfig {
     String MALL_THIRD = "http://120.77.46.28:8080/test/servlet/getAwardGoods?pageIndex=%d&awardType=3";
     //判断此用户有几个奖品
     String GET_PRIZE = "http://120.77.46.28:8080/test/servlet/getUnusedAwards?userID=%s";
-
+    //
+    String GET_CURRENT_SHARE = "http://120.77.46.28:8080/test/servlet/getCurrentShare?userID=%s";
+    //获取中奖查询的物流信息
+    String GET_LOGISTIC = "http://120.77.46.28:8080/test/servlet/getAwardsOrderNumber?userID=%s";
 }

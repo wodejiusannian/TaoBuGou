@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,19 +15,10 @@ import android.widget.TextView;
 
 import com.example.taogegou.R;
 import com.example.taogegou.config.NetConfig;
-import com.example.taogegou.custom.MySelfDialog;
-import com.example.taogegou.download.DownLoadUtils;
 import com.example.taogegou.download.DownloadApk;
-import com.example.taogegou.download.SystemParams;
 import com.example.taogegou.utils.ActivityUtils;
 import com.example.taogegou.utils.MySharedPreferences;
 import com.example.taogegou.utils.UtilsInternet;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -70,6 +60,10 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     public void initView() {
         mTextViewJump = (TextView) findViewById(R.id.tv_splash_jump);
+        //1.注册下载广播接收器
+        DownloadApk.registerBroadcast(this);
+        //2.删除已存在的Apk
+        DownloadApk.removeFile(this);
     }
 
     public void initData() {
@@ -77,7 +71,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         UtilsInternet.getInstance().get(url, null, this);
         isFirst = MySharedPreferences.IsFirstLoading(this);
         MySharedPreferences.WriteLoading(this);
-        isFresh();
+        //isFresh();
     }
 
     public void setData() {
@@ -123,11 +117,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void isFresh() {
-        //1.注册下载广播接收器.
-        DownloadApk.registerBroadcast(this);
-        //2.删除已存在的Apk
-        DownloadApk.removeFile(this);
+    /*private void isFresh() {
         final SystemParams instance = SystemParams.getInstance();
         final boolean isFresh = instance.getBoolean("isFresh");
         RequestParams params = new RequestParams(NetConfig.IS_FRESH_PATH);
@@ -194,13 +184,12 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-    }
+    }*/
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        DownloadApk.unregisterBroadcast(this);
     }
 
     private String getVersionName() {

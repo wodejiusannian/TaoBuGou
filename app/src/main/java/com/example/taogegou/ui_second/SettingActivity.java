@@ -15,7 +15,8 @@ import com.example.taogegou.utils.MySharedPreferences;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mBack;
-    private LinearLayout mUpdate,mExit;
+    private LinearLayout mUpdate, mExit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.iv_setting_back:
                 finish();
                 break;
@@ -59,14 +60,14 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 update();
                 break;
             case R.id.ll_setting_exit:
-                MySharedPreferences.WriteUserInfo(this,null,null);
-                MySharedPreferences.WriteUserId(this,null);
+                MySharedPreferences.WriteUserInfo(this, null, null);
+                MySharedPreferences.WriteUserId(this, null);
                 Toast.makeText(SettingActivity.this, "退出成功", Toast.LENGTH_SHORT).show();
                 sendBroad();
                 break;
             default:
 
-            break;
+                break;
         }
     }
 
@@ -86,7 +87,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-    public void sendBroad(){
+    public void sendBroad() {
         Intent intent = new Intent();
         intent.setAction("action.refreshFriend");
         sendBroadcast(intent);

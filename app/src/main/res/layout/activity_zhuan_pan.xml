@@ -3,62 +3,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
     android:background="#fff"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.example.taogegou.ui_second.ZhuanPanActivity">
+
     <RelativeLayout
         android:id="@+id/tl_details_mTool"
-        android:background="@color/main_color"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:background="@color/main_color">
 
         <ImageView
             android:id="@+id/iv_zhuanpan_back"
-            android:src="@mipmap/back"
-            android:layout_height="match_parent"
             android:layout_width="40dp"
-            />
-        <TextView
-            android:text="我的抽奖"
-            android:textColor="@color/main_write"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_centerInParent="true"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/iv_zhuanpan_heart"
-            android:src="@mipmap/ic_launcher"
-            android:layout_alignParentEnd="true"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
-        <TextView
-            android:layout_toLeftOf="@+id/iv_zhuanpan_heart"
-            android:text="剩余抽奖次数"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="320dp">
-        <com.example.taogegou.custom.LuckyPanView
-            android:id="@+id/id_luckypan"
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:src="@mipmap/back" />
 
-        <ImageView
-            android:id="@+id/id_start_btn"
-            android:src="@drawable/start"
-            android:layout_centerInParent="true"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_centerInParent="true"
+            android:text="我的抽奖"
+            android:textColor="@color/main_write" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_zhuanpan_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="@dimen/margin_min"
+                android:layout_marginRight="@dimen/margin_min"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tv_zhuanpan_count"
+                android:text="剩余抽奖次数:" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:layout_weight="1">
+
+            <com.example.taogegou.custom.LuckyPanView
+                android:id="@+id/id_luckypan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:padding="10dp" />
+
+            <ImageView
+                android:id="@+id/id_start_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/start" />
+        </RelativeLayout>
+
+        <WebView
+            android:id="@+id/wb_prize_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+
+        </WebView>
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -27,6 +27,7 @@ import com.example.taogegou.ui_second.LoginActivity;
 import com.example.taogegou.ui_second.SettingActivity;
 import com.example.taogegou.ui_third.ConnectionActivity;
 import com.example.taogegou.ui_third.FeedBackActivity;
+import com.example.taogegou.ui_third.LogisticActivity;
 import com.example.taogegou.ui_third.MallActivity;
 import com.example.taogegou.ui_third.UseActivity;
 import com.example.taogegou.utils.ActivityUtils;
@@ -44,7 +45,7 @@ import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener, MyThirdData, ReFreshUserInfo {
-    private LinearLayout mLineShare, mUse, mFeedback, mConnection,mMall;
+    private LinearLayout mLineShare, mUse, mFeedback, mConnection, mMall, mLogistic;
     private RelativeLayout mUserInfo;
     private ImageView mImageViewQQ, mImageViewWeChat, mSetting;
     private SimpleDraweeView mPhoto;
@@ -72,6 +73,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
     private void getChildView(View inflate) {
         mLineShare = (LinearLayout) inflate.findViewById(R.id.ll_mine_share);
+        mLogistic = (LinearLayout) inflate.findViewById(R.id.ll_mine_logistic);
         mUserInfo = (RelativeLayout) inflate.findViewById(R.id.rl_mine_info);
         mImageViewQQ = (ImageView) inflate.findViewById(R.id.iv_mine_qq);
         mImageViewWeChat = (ImageView) inflate.findViewById(R.id.iv_mine_wechat);
@@ -96,6 +98,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         mFeedback.setOnClickListener(this);
         mConnection.setOnClickListener(this);
         mMall.setOnClickListener(this);
+        mLogistic.setOnClickListener(this);
         MainActivity activity = (MainActivity) getActivity();
         activity.setFresh(this);
     }
@@ -127,11 +130,13 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         } else {
             if (TextUtils.isEmpty(userId)) {
                 mName.setText("注册/登录");
+                Uri parse = Uri.parse("res:///" + R.mipmap.red);
+                mPhoto.setImageURI(parse);
             } else {
                 mName.setText("TGG_146" + userId);
+                Uri parse = Uri.parse("res:///" + R.mipmap.blue);
+                mPhoto.setImageURI(parse);
             }
-            Uri parse = Uri.parse("res:///" + R.mipmap.managephoto);
-            mPhoto.setImageURI(parse);
         }
     }
 
@@ -172,7 +177,10 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                 ActivityUtils.switchTo(getActivity(), FeedBackActivity.class);
                 break;
             case R.id.ll_mine_mall:
-                ActivityUtils.switchTo(getActivity(),MallActivity.class);
+                ActivityUtils.switchTo(getActivity(), MallActivity.class);
+                break;
+            case R.id.ll_mine_logistic:
+                ActivityUtils.switchTo(getActivity(), LogisticActivity.class);
                 break;
             default:
 

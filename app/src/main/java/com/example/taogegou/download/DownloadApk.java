@@ -23,6 +23,7 @@ public class DownloadApk {
 
     /**
      * 下载APK文件
+     *
      * @param context
      * @param url
      * @param title
@@ -31,19 +32,19 @@ public class DownloadApk {
     public static void downloadApk(Context context, String url, String title, final String appName) {
 
         //获取存储的下载ID
-        long downloadId = SystemParams.getInstance().getLong(DownloadManager.EXTRA_DOWNLOAD_ID,-1L);
-        if(downloadId != -1) {
+        long downloadId = SystemParams.getInstance().getLong(DownloadManager.EXTRA_DOWNLOAD_ID, -1L);
+        if (downloadId != -1) {
             //存在downloadId
             DownLoadUtils downLoadUtils = DownLoadUtils.getInstance(context);
             //获取当前状态
             int status = downLoadUtils.getDownloadStatus(downloadId);
-            if(DownloadManager.STATUS_SUCCESSFUL == status) {
+            if (DownloadManager.STATUS_SUCCESSFUL == status) {
                 //状态为下载成功
                 //获取下载路径URI
                 Uri downloadUri = downLoadUtils.getDownloadUri(downloadId);
-                if(null != downloadUri) {
+                if (null != downloadUri) {
                     //存在下载的APK，如果两个APK相同，启动更新界面。否之则删除，重新下载。
-                    if(compare(getApkInfo(context,downloadUri.getPath()),context)) {
+                    if (compare(getApkInfo(context, downloadUri.getPath()), context)) {
                         startInstall(context, downloadUri);
                         return;
                     } else {
@@ -51,21 +52,22 @@ public class DownloadApk {
                         downLoadUtils.getDownloadManager().remove(downloadId);
                     }
                 }
-                start(context, url, title,appName);
-            } else if(DownloadManager.STATUS_FAILED == status) {
+                start(context, url, title, appName);
+            } else if (DownloadManager.STATUS_FAILED == status) {
                 //下载失败,重新下载
-                start(context, url, title,appName);
-            }else {
+                start(context, url, title, appName);
+            } else {
                 Log.d(context.getPackageName(), "apk is already downloading");
             }
         } else {
             //不存在downloadId，没有下载过APK
-            start(context, url, title,appName);
+            start(context, url, title, appName);
         }
     }
 
     /**
      * 开始下载
+     *
      * @param context
      * @param url
      * @param title
@@ -73,12 +75,12 @@ public class DownloadApk {
      */
     private static void start(Context context, String url, String title, String appName) {
 
-        if(hasSDKCard()) {
+        if (hasSDKCard()) {
             long id = DownLoadUtils.getInstance(context).download(url,
                     title, "下载完成后点击打开", appName);
-            SystemParams.getInstance().setLong(DownloadManager.EXTRA_DOWNLOAD_ID,id);
+            SystemParams.getInstance().setLong(DownloadManager.EXTRA_DOWNLOAD_ID, id);
         } else {
-            Toast.makeText(context,"手机未安装SD卡，下载失败", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "手机未安装SD卡，下载失败", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -88,13 +90,14 @@ public class DownloadApk {
     }
 
     public static void unregisterBroadcast(Context context) {
-        if(null != apkInstallReceiver) {
+        if (null != apkInstallReceiver) {
             context.unregisterReceiver(apkInstallReceiver);
         }
     }
 
     /**
      * 跳转到安装界面
+     *
      * @param context
      * @param uri
      */
@@ -109,6 +112,7 @@ public class DownloadApk {
 
     /**
      * 获取APK程序信息
+     *
      * @param context
      * @param path
      * @return
@@ -117,7 +121,7 @@ public class DownloadApk {
 
         PackageManager pm = context.getPackageManager();
         PackageInfo pi = pm.getPackageArchiveInfo(path, PackageManager.GET_ACTIVITIES);
-        if(null != pi) {
+        if (null != pi) {
             return pi;
         }
         return null;
@@ -126,17 +130,18 @@ public class DownloadApk {
 
     /**
      * 比较两个APK的信息
+     *
      * @param apkInfo
      * @param context
      * @return
      */
     private static boolean compare(PackageInfo apkInfo, Context context) {
 
-        if(null == apkInfo) {
+        if (null == apkInfo) {
             return false;
         }
         String localPackageName = context.getPackageName();
-        if(localPackageName.equals(apkInfo.packageName)) {
+        if (localPackageName.equals(apkInfo.packageName)) {
             try {
                 PackageInfo packageInfo = context.getPackageManager().getPackageInfo(localPackageName, 0);
                 //比较当前APK和下载的APK版本号
@@ -162,12 +167,12 @@ public class DownloadApk {
      * 删除已下载的文件
      */
     public static void removeFile(Context context) {
-        String filePath = SystemParams.getInstance().getString("downloadApk",null);
-        if(null != filePath) {
+        String filePath = SystemParams.getInstance().getString("downloadApk", null);
+        if (null != filePath) {
             File downloadFile = new File(filePath);
-            if(null != downloadFile && downloadFile.exists()) {
+            if (null != downloadFile && downloadFile.exists()) {
                 //删除之前先判断用户是否已经安装了，安装了才删除。
-                if(!compare(getApkInfo(context,filePath),context)) {
+                if (!compare(getApkInfo(context, filePath), context)) {
                     downloadFile.delete();
                     Log.e("----", "已删除");
                 }
