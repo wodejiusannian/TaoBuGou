@@ -5,116 +5,123 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.example.taogegou.ui_second.SettingActivity">
+
     <RelativeLayout
         android:id="@+id/rl_setting_top"
-        android:background="@color/main_color"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:background="@color/main_color">
+
         <ImageView
             android:id="@+id/iv_setting_back"
-            android:src="@mipmap/back"
-            android:layout_height="match_parent"
             android:layout_width="40dp"
-            />
+            android:layout_height="match_parent"
+            android:src="@mipmap/back" />
+
         <TextView
-            android:text="淘个够设置"
-            android:textColor="@color/main_write"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            />
+            android:text="淘个够设置"
+            android:textColor="@color/main_write" />
     </RelativeLayout>
+
     <LinearLayout
-        android:layout_below="@+id/rl_setting_top"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_setting_top"
+        android:layout_margin="@dimen/margin_10"
+        android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/ll_setting_push"
-            android:padding="@dimen/margin_mid"
-            android:background="@drawable/main_angular"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:background="@drawable/main_angular"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_mid">
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@mipmap/ic_launcher"
-                />
+                android:layout_gravity="center"
+                android:src="@mipmap/tuisong" />
+
             <TextView
-                android:text="消息推送"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:text="消息推送" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginTop="@dimen/margin_min"
             android:id="@+id/ll_setting_update"
-            android:padding="@dimen/margin_mid"
-            android:background="@drawable/main_angular"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="30dp"
-                android:src="@mipmap/ic_launcher"
-                />
-            <TextView
-                android:text="检测更新"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
             android:layout_marginTop="@dimen/margin_min"
-            android:id="@+id/ll_setting_at_my"
-            android:padding="@dimen/margin_mid"
             android:background="@drawable/main_angular"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:padding="@dimen/margin_mid">
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@mipmap/ic_launcher"
-                />
+                android:layout_gravity="center"
+                android:src="@mipmap/update" />
+
             <TextView
-                android:text="关于"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:text="检测更新" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_marginTop="@dimen/margin_max_20"
-            android:id="@+id/ll_setting_exit"
-            android:padding="@dimen/margin_mid"
-            android:background="@drawable/main_angular"
-            android:orientation="horizontal"
+            android:id="@+id/ll_setting_at_my"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:layout_marginTop="@dimen/margin_min"
+            android:background="@drawable/main_angular"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_mid">
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@mipmap/ic_launcher"
-                />
+                android:layout_gravity="center"
+                android:src="@mipmap/my" />
+
             <TextView
-                android:text="退出登录"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
+                android:text="关于" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_setting_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_max_20"
+            android:background="@drawable/main_angular"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_mid">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/exit" />
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:text="退出登录" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

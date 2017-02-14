@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.example.taogegou.R;
 import com.example.taogegou.config.NetConfig;
-import com.example.taogegou.download.DownloadApk;
 import com.example.taogegou.utils.ActivityUtils;
 import com.example.taogegou.utils.MySharedPreferences;
 import com.example.taogegou.utils.UtilsInternet;
@@ -61,9 +60,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     public void initView() {
         mTextViewJump = (TextView) findViewById(R.id.tv_splash_jump);
         //1.注册下载广播接收器
-        DownloadApk.registerBroadcast(this);
+       /* DownloadApk.registerBroadcast(this);
         //2.删除已存在的Apk
-        DownloadApk.removeFile(this);
+        DownloadApk.removeFile(this);*/
     }
 
     public void initData() {

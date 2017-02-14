@@ -7,6 +7,7 @@ import android.view.WindowManager;
 
 import com.example.taogegou.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -25,11 +26,24 @@ public abstract class BaseActivity extends AppCompatActivity {
         setData();
         setListener();
     }
+
     public abstract void initView();
+
     public abstract void initData();
+
     public abstract void setData();
+
     public abstract void setListener();
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 }

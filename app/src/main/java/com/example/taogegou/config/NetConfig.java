@@ -34,4 +34,6 @@ public interface NetConfig {
     String GET_CURRENT_SHARE = "http://120.77.46.28:8080/test/servlet/getCurrentShare?userID=%s";
     //获取中奖查询的物流信息
     String GET_LOGISTIC = "http://120.77.46.28:8080/test/servlet/getAwardsOrderNumber?userID=%s";
+    //Banner的接口
+    String BANNER_PATH = "http://120.77.46.28:8080/test/servlet/banner";
 }

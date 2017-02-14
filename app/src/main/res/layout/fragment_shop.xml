@@ -1,15 +1,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".fragment_second.Fragment_Clothing_Acc">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment_second.Fragment_Clothing_Acc">
+
     <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/sf_fragment_shop_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-    <FrameLayout
+        android:id="@+id/sf_fragment_shop_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_fragment_shop"
@@ -18,84 +20,93 @@
                 android:layout_gravity="center_horizontal|top" />
 
 
-        <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
-            android:id="@+id/header"
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_gravity="center_horizontal|top">
-
-            <com.jude.rollviewpager.RollPagerView
-                android:id="@+id/rv_shop_banner"
+            <com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader
+                android:id="@+id/header"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
-                >
-            </com.jude.rollviewpager.RollPagerView>
-            <LinearLayout
-                android:padding="10dp"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/ll_shop_recommend"
-                    android:padding="@dimen/margin_min"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:src="@mipmap/recommends"
-                        android:layout_height="40dp"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/margin_min"
-                        android:text="小编力荐"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                android:layout_height="250dp"
+                android:layout_gravity="center_horizontal|top">
+
+                <com.jude.rollviewpager.RollPagerView
+                    android:id="@+id/rv_shop_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                </com.jude.rollviewpager.RollPagerView>
 
                 <LinearLayout
-                    android:id="@+id/ll_shop_low"
-                    android:padding="@dimen/margin_min"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:src="@mipmap/jiu"
-                        android:layout_height="40dp"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/margin_min"
-                        android:text="9.9包邮"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/ll_shop_food"
-                    android:padding="@dimen/margin_min"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:src="@mipmap/food"
-                        android:layout_height="40dp"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/margin_min"
-                        android:text="休闲零食"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-            </LinearLayout>
-        </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+                    <LinearLayout
+                        android:id="@+id/ll_shop_recommend"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_min">
 
-    </FrameLayout>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@mipmap/recommends" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_min"
+                            android:text="小编力荐" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_shop_low"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_min">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@mipmap/jiu" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_min"
+                            android:text="9.9包邮" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_shop_food"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_min">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@mipmap/food" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_min"
+                            android:text="休闲零食" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.bartoszlipinski.recyclerviewheader.RecyclerViewHeader>
+
+        </FrameLayout>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

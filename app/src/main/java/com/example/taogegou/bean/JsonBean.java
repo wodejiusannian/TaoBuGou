@@ -28,6 +28,15 @@ public class JsonBean {
     private String Quan_condition;
     private String Quan_m_link;
     private String Quan_link;
+    private String Type;
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
+    }
 
     public String getID() {
         return ID;

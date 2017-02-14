@@ -42,6 +42,7 @@
         <activity android:name=".ui_second.ZhuanPanActivity" />
         <activity android:name=".ui_second.WaitActivity" />
         <activity android:name=".ui_second.BuyActivity" />
+
         <!-- 这是shareSDK分享需要添加的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -87,7 +88,11 @@
         <activity android:name=".ui_third.ModuleActivity" />
         <activity android:name=".ui_third.ResultActivity" />
         <activity android:name=".ui_third.MallActivity" />
-        <activity android:name=".ui_third.LogisticActivity"></activity>
+        <activity android:name=".ui_third.LogisticActivity" />
+        <activity android:name=".ui_third.GoodActivity"></activity>
+
+        <meta-data android:value="58a31582a40fa33afe00102c" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
     </application>
 
 </manifest>

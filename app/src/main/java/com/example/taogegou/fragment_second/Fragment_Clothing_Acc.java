@@ -19,10 +19,9 @@ import com.example.taogegou.bean.JsonBean;
 import com.example.taogegou.config.NetConfig;
 import com.example.taogegou.decoration.ItemDecoration;
 import com.example.taogegou.ui_second.BuyActivity;
-import com.example.taogegou.ui_second.WaitActivity;
-import com.example.taogegou.ui_second.ZhuanPanActivity;
 import com.example.taogegou.ui_third.ModuleActivity;
 import com.example.taogegou.utils.ActivityUtils;
+import com.example.taogegou.utils.UtilsInternet;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
@@ -40,11 +39,11 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, View.OnClickListener {
+public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, View.OnClickListener, UtilsInternet.XCallBack {
 
     private RecyclerView mRecycleView;
     private SwipeRefreshLayout mRefreshLayout;
-    private List<JsonBean> mData;
+    private List<JsonBean> mData, mBanner;
     private ShopAdapter mAdapter;
     private Callback.Cancelable cancelable;
     private RollPagerView mRollPagerView;
@@ -85,12 +84,14 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
     protected void initData() {
         super.initData();
         mData = new ArrayList<>();
+        mBanner = new ArrayList<>();
         mAdapter = new ShopAdapter(getActivity(), mData);
         initRollViewPager();
+        UtilsInternet.getInstance().get(NetConfig.BANNER_PATH, null, this);
     }
 
     private void initRollViewPager() {
-        bAdapter = new BannerAdapter(mRollPagerView, getActivity());
+        bAdapter = new BannerAdapter(mRollPagerView, mBanner, getActivity());
         mRollPagerView.setAdapter(bAdapter);
         mRollPagerView.setHintView(new ColorPointHintView(getActivity(), Color.parseColor("#ac0000"), Color.WHITE));
         mRollPagerView.setPlayDelay(JUMP_TIME);
@@ -208,17 +209,27 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
 
     @Override
     public void onItemClick(int position) {
-        if (position == 0) {
-            ActivityUtils.switchTo(getActivity(), ZhuanPanActivity.class);
-        } else {
-            Map<String, Object> map = new HashMap<>();
-            if (position == 1) {
-                map.put("style", "震撼首发");
-                ActivityUtils.switchTo(getActivity(), WaitActivity.class, map);
-            } else if (position == 2) {
-                map.put("style", "优品推荐");
-                ActivityUtils.switchTo(getActivity(), WaitActivity.class, map);
-            }
+        Map<String, Object> map = new HashMap<>();
+        JsonBean jsonBean = mBanner.get(position);
+        String type = jsonBean.getType();
+        switch (type) {
+            case "good":
+                String url = jsonBean.getQuan_link();
+                String isTmall = jsonBean.getIsTmall();
+                String goodsID = jsonBean.getGoodsID();
+                String quan_price = jsonBean.getQuan_price();
+                String quan_id = jsonBean.getQuan_id();
+                map.put("url", url);
+                map.put("GoodsID", goodsID);
+                map.put("IsTmall", isTmall);
+                map.put("quan_price", quan_price);
+                map.put("quan_id", quan_id);
+                ActivityUtils.switchTo(getActivity(), BuyActivity.class, map);
+                break;
+
+            default:
+                break;
+
         }
     }
 
@@ -261,6 +272,36 @@ public class Fragment_Clothing_Acc extends BaseFragment implements SwipeRefreshL
                 break;
         }
 
+    }
+
+    @Override
+    public void onResponse(String result) {
+
+        try {
+            JSONObject obj = new JSONObject(result);
+            JSONArray array = obj.getJSONArray("result");
+            for (int i = 0; i < array.length(); i++) {
+                JsonBean bean = new JsonBean();
+                JSONObject jb = array.getJSONObject(i);
+                bean.setType(jb.getString("type"));
+                JSONObject goodsInfo = jb.getJSONObject("goodsInfo");
+                bean.setTitle(goodsInfo.getString("Title"));
+                bean.setPic(goodsInfo.getString("Pic"));
+                bean.setIsTmall(goodsInfo.getString("IsTmall"));
+                bean.setSales_num(goodsInfo.getString("Sales_num"));
+                bean.setOrg_Price(goodsInfo.getString("Org_Price"));
+                bean.setPrice(goodsInfo.getDouble("Price") + "");
+                bean.setQuan_price(goodsInfo.getString("Quan_price"));
+                bean.setQuan_time(goodsInfo.getString("Quan_time"));
+                bean.setQuan_link(goodsInfo.getString("Quan_link"));
+                bean.setGoodsID(goodsInfo.getString("GoodsID"));
+                bean.setQuan_id(goodsInfo.getString("Quan_id"));
+                mBanner.add(bean);
+            }
+            bAdapter.notifyDataSetChanged();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
    /* public String load(){

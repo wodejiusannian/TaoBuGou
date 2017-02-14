@@ -30,14 +30,15 @@ import java.util.Map;
 
 public class ResultActivity extends BaseActivity implements View.OnClickListener, UtilsInternet.XCallBack, SwipeRefreshLayout.OnRefreshListener, RadioGroup.OnCheckedChangeListener {
     private ImageView mBack;
-    private String search,encode;
+    private String search, encode;
     private RecyclerView mShow;
     private ShopAdapter mAdapter;
     private List<JsonBean> mData;
-    private int page = 1,orderBy = 0;
+    private int page = 1, orderBy = 0;
     private GridLayoutManager mManager;
     private SwipeRefreshLayout mRefresh;
     private RadioGroup mFilter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,21 +62,21 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        getData(encode,page);
+        getData(encode, page);
 
     }
 
-    private void getData(String encode,int pages) {
+    private void getData(String encode, int pages) {
 
-            String searchPath = String.format(NetConfig.SEARCH_PATH,encode,orderBy,pages);
-            UtilsInternet.getInstance().get(searchPath,null,this);
+        String searchPath = String.format(NetConfig.SEARCH_PATH, encode, orderBy, pages);
+        UtilsInternet.getInstance().get(searchPath, null, this);
 
     }
 
     @Override
     public void setData() {
-        mManager = new GridLayoutManager(this,2);
-        mAdapter = new ShopAdapter(this,mData);
+        mManager = new GridLayoutManager(this, 2);
+        mAdapter = new ShopAdapter(this, mData);
         mShow.setLayoutManager(mManager);
         mShow.setAdapter(mAdapter);
         mShow.addItemDecoration(new ItemDecoration(10));
@@ -93,12 +94,12 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if (newState== RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     // 判断最后一个条目是否出现了
                     int last = mManager.findLastVisibleItemPosition();
-                    if (last==mData.size()-1){
+                    if (last == mData.size() - 1) {
                         //如果出现了 加载下一页数据
-                        getData(encode,page);
+                        getData(encode, page);
                     }
 
                 }
@@ -108,12 +109,12 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.iv_result_back:
                 finish();
                 break;
             case R.id.item_fragment_shop_Content:
-                Map<String,Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<>();
                 int tag = (int) v.getTag();
                 JsonBean jsonBean = mData.get(tag);
                 String url = jsonBean.getQuan_link();
@@ -121,12 +122,12 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
                 String goodsID = jsonBean.getGoodsID();
                 String quan_price = jsonBean.getQuan_price();
                 String quan_id = jsonBean.getQuan_id();
-                map.put("url",url);
-                map.put("GoodsID",goodsID);
-                map.put("IsTmall",isTmall);
-                map.put("quan_price",quan_price);
-                map.put("quan_id",quan_id);
-                ActivityUtils.switchTo(this,BuyActivity.class,map);
+                map.put("url", url);
+                map.put("GoodsID", goodsID);
+                map.put("IsTmall", isTmall);
+                map.put("quan_price", quan_price);
+                map.put("quan_id", quan_id);
+                ActivityUtils.switchTo(this, BuyActivity.class, map);
                 break;
             default:
 
@@ -136,8 +137,8 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onResponse(String result) {
-        if (!TextUtils.isEmpty(result)&&!TextUtils.equals("0",result)){
-            if (page==1){
+        if (!TextUtils.isEmpty(result) && !TextUtils.equals("0", result)) {
+            if (page == 1) {
                 mData.clear();
             }
             page++;
@@ -149,28 +150,28 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onRefresh() {
-        getData(encode,1);
+        getData(encode, 1);
         mRefresh.setRefreshing(false);
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-        switch(checkedId){
+        switch (checkedId) {
             case R.id.rb_result_filter_standard:
                 page = 1;
                 orderBy = 0;
-                getData(encode,1);
+                getData(encode, 1);
                 break;
             case R.id.rb_result_filter_price:
                 page = 1;
                 orderBy = 1;
-                getData(encode,1);
+                getData(encode, 1);
                 break;
             case R.id.rb_result_filter_many:
                 page = 1;
                 orderBy = 2;
-                getData(encode,1);
+                getData(encode, 1);
                 break;
             default:
 
