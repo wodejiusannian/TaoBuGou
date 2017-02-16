@@ -11,7 +11,7 @@ import org.xutils.x;
 
 import cn.sharesdk.framework.ShareSDK;
 
-public class MyApplication extends Application{
+public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,7 +19,7 @@ public class MyApplication extends Application{
         ShareSDK.initSDK(this);
         SystemParams.init(this);
         Fresco.initialize(this);
-        OpenInstall.init(this,Utils.APPKEY);
+        OpenInstall.init(this, Utils.APPKEY);
         OpenInstall.setDebug(true);
     }
 }

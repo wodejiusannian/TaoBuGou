@@ -27,6 +27,7 @@ import com.example.taogegou.ui_second.LoginActivity;
 import com.example.taogegou.ui_second.SettingActivity;
 import com.example.taogegou.ui_third.ConnectionActivity;
 import com.example.taogegou.ui_third.FeedBackActivity;
+import com.example.taogegou.ui_third.PersonActivity;
 import com.example.taogegou.ui_third.UseActivity;
 import com.example.taogegou.utils.ActivityUtils;
 import com.example.taogegou.utils.MySharedPreferences;
@@ -153,7 +154,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                 if (TextUtils.isEmpty(userId)) {
                     ActivityUtils.switchTo(getActivity(), LoginActivity.class);
                 } else {
-                    ActivityUtils.switchTo(getActivity(), SettingActivity.class);
+                    ActivityUtils.switchTo(getActivity(), PersonActivity.class);
                 }
                 break;
             case R.id.iv_mine_qq:

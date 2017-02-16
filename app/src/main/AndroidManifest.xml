@@ -42,7 +42,13 @@
         <activity android:name=".ui_second.ZhuanPanActivity" />
         <activity android:name=".ui_second.WaitActivity" />
         <activity android:name=".ui_second.BuyActivity" />
-
+        <activity
+            android:name="com.foamtrace.photopicker.PhotoPickerActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/PhotoPickerTheme" />
+        <activity
+            android:name="com.foamtrace.photopicker.PhotoPreviewActivity"
+            android:theme="@style/PhotoPickerTheme" />
         <!-- 这是shareSDK分享需要添加的activity -->
         <activity
             android:name="com.mob.tools.MobUIShell"
@@ -89,10 +95,16 @@
         <activity android:name=".ui_third.ResultActivity" />
         <activity android:name=".ui_third.MallActivity" />
         <activity android:name=".ui_third.LogisticActivity" />
-        <activity android:name=".ui_third.GoodActivity"></activity>
+        <activity android:name=".ui_third.GoodActivity" />
 
-        <meta-data android:value="58a31582a40fa33afe00102c" android:name="UMENG_APPKEY"/>
-        <meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="58a31582a40fa33afe00102c" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
+
+        <activity android:name=".ui_third.PersonActivity"></activity>
     </application>
 
 </manifest>

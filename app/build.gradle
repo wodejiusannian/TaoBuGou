@@ -49,6 +49,7 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.1'
     compile 'org.xutils:xutils:3.3.36'
     compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.foamtrace:photopicker:1.0'
     compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
     compile 'com.facebook.fresco:fresco:1.0.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
