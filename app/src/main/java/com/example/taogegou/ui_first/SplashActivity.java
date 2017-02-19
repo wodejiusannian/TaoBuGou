@@ -1,8 +1,6 @@
 package com.example.taogegou.ui_first;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -149,6 +147,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                                         } else {
                                             DownLoadUtils.getInstance(getApplicationContext()).skipToDownloadManager();
                                         }
+
                                     }
                                 });
                                 mDialog.setOnNoListener("取消", new MySelfDialog.OnNoClickListener() {
@@ -191,18 +190,5 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         super.onDestroy();
     }
 
-    private String getVersionName() {
-        // 获取packagemanager的实例
-        PackageManager packageManager = getPackageManager();
-        // getPackageName()是你当前类的包名，0代表是获取版本信息
-        PackageInfo packInfo = null;
-        try {
-            packInfo = packageManager.getPackageInfo(getPackageName(), 0);
-            String version = packInfo.versionName;
-            return version;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 }

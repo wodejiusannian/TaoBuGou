@@ -63,6 +63,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> 
         holder.mTextViewTitle.setText(title);
         if (TextUtils.equals("1", isTmall)) {
             holder.mImageViewIsTmall.setImageResource(R.mipmap.tall);
+            holder.mIsTmall.setText("天猫");
         } else {
             holder.mImageViewIsTmall.setImageResource(R.mipmap.taobao);
         }
@@ -85,7 +86,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> 
         private LinearLayout mLinearLayoutContent;
         private ImageView mImageViewIsTmall;
         private TextView mTextViewTitle, mTextViewOrg_Price, mTextViewPrice,
-                mTextViewSales_num/*, mTextViewQuan_price*/;
+                mTextViewSales_num, mIsTmall/*, mTextViewQuan_price*/;
         private SimpleDraweeView mImageViewPic;
 
         public MyViewHolder(View itemView) {
@@ -98,6 +99,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> 
             /*mTextViewQuan_price = (TextView) itemView.findViewById(R.id.item_fragment_shop_Quan_price);*/
             mImageViewPic = (SimpleDraweeView) itemView.findViewById(R.id.item_fragment_shop_pic);
             mLinearLayoutContent = (LinearLayout) itemView.findViewById(R.id.item_fragment_shop_Content);
+            mIsTmall = (TextView) itemView.findViewById(R.id.item_shop_tv_is_tmall);
         }
 
     }

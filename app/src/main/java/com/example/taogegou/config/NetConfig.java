@@ -19,7 +19,7 @@ public interface NetConfig {
     /*mm_103424431_12490887_47302518   wubo pid*/
     /*mm_111980370_13448108_54518145   wushuang pid*/
     /*mm_114562371_20984473_70926435   longwen pid*/
-    String TRANSLATE_PATH = "https://uland.taobao.com/coupon/edetail?activityId=%s&itemId=%s&pid=mm_103424431_12490887_47302518&src=mdk_mdktk&dx=1&nowake=1";
+    String TRANSLATE_PATH = "https://uland.taobao.com/coupon/edetail?activityId=%s&itemId=%s&pid=mm_114562371_20984473_70926435&src=mdk_mdktk&dx=1&nowake=1";
     //是否更新的接口
     String IS_FRESH_PATH = "http://hmyc365.net:8080/HuiMei/appVersion!getAndVersion.action";
     //一等奖接口
@@ -36,4 +36,6 @@ public interface NetConfig {
     String GET_LOGISTIC = "http://120.77.46.28:8080/test/servlet/getAwardsOrderNumber?userID=%s";
     //Banner的接口
     String BANNER_PATH = "http://120.77.46.28:8080/test/servlet/banner";
+    String HOME_DATA = "http://120.77.46.28:8080/test/servlet/getAllGoods?pageIndex=%d&goodsType=%d";
+    String BANBEN_PATH = "http://120.77.46.28:8080/test/servlet/getVersion";
 }

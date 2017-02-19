@@ -99,7 +99,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         mMall.setOnClickListener(this);
         mLogistic.setOnClickListener(this);*/
         MainActivity activity = (MainActivity) getActivity();
-        activity.setFresh(this);
+        /*activity.setFresh(this);*/
     }
 
     @Override
@@ -116,10 +116,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         userId = MySharedPreferences.getUserId(getContext());
         String userInfo = MySharedPreferences.getUserInfo(getContext());
         userId = MySharedPreferences.getUserId(getContext());
+        Log.i("tag", "reFreshUser: " + userInfo);
         if (!TextUtils.equals(",", userInfo)) {
             String[] split = userInfo.split(",");
-            String photo = split[0];
-            String name = split[1];
+            String name = split[0];
+            String photo = split[1];
             if (!TextUtils.isEmpty(name)) {
                 mName.setText(name);
             }

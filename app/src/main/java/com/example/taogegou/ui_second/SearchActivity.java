@@ -22,7 +22,9 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     private EditText mWrite;
     private ImageView mGo;
     private MyRelativeLayout mHot;
-    private String[] arr = {"新款女装","男鞋","女裤","女连衣裙","女鞋","女外套","男裤","外套","美食"};
+    private String[] arr = {"新款女装", "女连衣裙", "女鞋", "女外套",
+            "男裤", "零食", "男外套", "化妆品", "理疗盐袋", "男春装", "男鞋"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void setData() {
-        for (int i = 0; i<arr.length; i++){
+        for (int i = 0; i < arr.length; i++) {
             TextView mTv = new TextView(this);
             mTv.setText(arr[i]);
             mTv.setTag(i);
@@ -69,29 +71,30 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.iv_search_back:
                 finish();
                 break;
             case R.id.iv_search_go:
                 String write = mWrite.getText().toString().trim();
                 String hintWrite = mWrite.getHint().toString().trim();
-                if (!TextUtils.isEmpty(write)){
+                if (!TextUtils.isEmpty(write)) {
                     //搜索的方法
                     goSearch(write);
-                }else{
+                } else {
                     goSearch(hintWrite);
                 }
-            break;
+                break;
             default:
 
-            break;
+                break;
         }
     }
+
     //搜索的方法
     private void goSearch(String search) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("search",search);
-        ActivityUtils.switchTo(this, ResultActivity.class,map);
+        Map<String, Object> map = new HashMap<>();
+        map.put("search", search);
+        ActivityUtils.switchTo(this, ResultActivity.class, map);
     }
 }

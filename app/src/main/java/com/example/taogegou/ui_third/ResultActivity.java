@@ -1,35 +1,24 @@
 package com.example.taogegou.ui_third;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.example.taogegou.R;
-import com.example.taogegou.adapter.ShopAdapter;
+import com.example.taogegou.adapter.HomeAdapter_vp;
 import com.example.taogegou.base.BaseActivity;
-import com.example.taogegou.bean.JsonBean;
-import com.example.taogegou.config.NetConfig;
-import com.example.taogegou.decoration.ItemDecoration;
-import com.example.taogegou.ui_second.BuyActivity;
-import com.example.taogegou.utils.ActivityUtils;
-import com.example.taogegou.utils.MyJson;
-import com.example.taogegou.utils.UtilsInternet;
+import com.example.taogegou.fragment_second.Fragment_Default;
+import com.example.taogegou.fragment_second.Fragment_count;
+import com.example.taogegou.fragment_second.Fragment_price;
+import com.example.taogegou.utils.Record;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class ResultActivity extends BaseActivity implements View.OnClickListener, UtilsInternet.XCallBack, SwipeRefreshLayout.OnRefreshListener, RadioGroup.OnCheckedChangeListener {
-    private ImageView mBack;
+public class ResultActivity extends BaseActivity /*implements View.OnClickListener, UtilsInternet.XCallBack, SwipeRefreshLayout.OnRefreshListener, RadioGroup.OnCheckedChangeListener */ {
+    /*private ImageView mBack;
     private String search, encode;
     private RecyclerView mShow;
     private ShopAdapter mAdapter;
@@ -37,7 +26,12 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
     private int page = 1, orderBy = 0;
     private GridLayoutManager mManager;
     private SwipeRefreshLayout mRefresh;
-    private RadioGroup mFilter;
+    private RadioGroup mFilter;*/
+    private TabLayout mTitle;
+    private ViewPager mContent;
+    private List<String> mTitles = new ArrayList<>();
+    private List<Fragment> mFragments = new ArrayList<>();
+    private HomeAdapter_vp mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,46 +41,60 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void initView() {
-        mBack = (ImageView) findViewById(R.id.iv_result_back);
+        mTitle = (TabLayout) findViewById(R.id.tb_result_titles);
+        mContent = (ViewPager) findViewById(R.id.vp_result_content);
+       /* mBack = (ImageView) findViewById(R.id.iv_result_back);
         mShow = (RecyclerView) findViewById(R.id.rv_result_show);
         mRefresh = (SwipeRefreshLayout) findViewById(R.id.sf_result_refresh);
-        mFilter = (RadioGroup) findViewById(R.id.rv_result_filter);
+        mFilter = (RadioGroup) findViewById(R.id.rv_result_filter);*/
     }
 
     @Override
     public void initData() {
-        search = getIntent().getStringExtra("search");
+        mAdapter = new HomeAdapter_vp(getSupportFragmentManager(), mFragments, mTitles);
+        Record.search_Record = getIntent().getStringExtra("search");
+       /* search = getIntent().getStringExtra("search");
         mData = new ArrayList<>();
         try {
             encode = URLEncoder.encode(search, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        getData(encode, page);
+        getData(encode, page);*/
 
     }
 
     private void getData(String encode, int pages) {
 
-        String searchPath = String.format(NetConfig.SEARCH_PATH, encode, orderBy, pages);
-        UtilsInternet.getInstance().get(searchPath, null, this);
+        /*String searchPath = String.format(NetConfig.SEARCH_PATH, encode, orderBy, pages);
+        UtilsInternet.getInstance().get(searchPath, null, this);*/
 
     }
 
     @Override
     public void setData() {
-        mManager = new GridLayoutManager(this, 2);
+
+        mTitle.setupWithViewPager(mContent);
+        mContent.setAdapter(mAdapter);
+        mFragments.add(new Fragment_Default());
+        mFragments.add(new Fragment_count());
+        mFragments.add(new Fragment_price());
+        mTitles.add("默认排序");
+        mTitles.add("按销量");
+        mTitles.add("按价格");
+        mAdapter.notifyDataSetChanged();
+        /*mManager = new GridLayoutManager(this, 2);
         mAdapter = new ShopAdapter(this, mData);
         mShow.setLayoutManager(mManager);
         mShow.setAdapter(mAdapter);
         mShow.addItemDecoration(new ItemDecoration(10));
         RadioButton rb_standard = (RadioButton) mFilter.getChildAt(0);
-        rb_standard.setChecked(true);
+        rb_standard.setChecked(true);*/
     }
 
     @Override
     public void setListener() {
-        mBack.setOnClickListener(this);
+       /* mBack.setOnClickListener(this);
         mRefresh.setOnRefreshListener(this);
         mFilter.setOnCheckedChangeListener(this);
         mAdapter.setOnItemClickListener(this);
@@ -104,10 +112,10 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
 
                 }
             }
-        });
+        });*/
     }
 
-    @Override
+    /*@Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_result_back:
@@ -177,5 +185,9 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
 
                 break;
         }
+    }*/
+
+    public void back(View view) {
+        finish();
     }
 }

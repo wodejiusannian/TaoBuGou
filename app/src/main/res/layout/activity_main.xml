@@ -10,21 +10,20 @@
         android:id="@+id/rl_main_occupied"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ll_main_line"
+
         >
 
     </RelativeLayout>
-    <LinearLayout
+    <!--<LinearLayout
         android:id="@+id/ll_main_line"
         android:orientation="horizontal"
-        android:layout_above="@+id/rg_main_swap"
         android:background="@color/main_gray"
         android:layout_width="match_parent"
-        android:layout_height="1dp"></LinearLayout>
-    <RadioGroup
+        android:layout_height="1dp"></LinearLayout>-->
+    <!--<RadioGroup
         android:id="@+id/rg_main_swap"
         android:orientation="horizontal"
-        android:weightSum="2"
+        android:weightSum="1"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -40,8 +39,8 @@
             android:textColor="@drawable/home_text"
             android:drawableTop="@drawable/home"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="wrap_content"/>-->
+<!--
         <RadioButton
             android:id="@+id/rb_main_mine"
             android:button="@null"
@@ -52,8 +51,8 @@
             android:drawableTop="@drawable/mine"
             android:padding="@dimen/margin_min"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"/>-->
 
-    </RadioGroup>
+    <!--</RadioGroup>-->
 
 </RelativeLayout>

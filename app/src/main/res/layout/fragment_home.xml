@@ -10,13 +10,14 @@
         android:background="@color/main_color">
 
         <Button
+
             android:id="@+id/btn_home_search"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin_mid"
             android:layout_marginRight="@dimen/margin_max_50"
-            android:background="@color/main_write"
+            android:background="@drawable/search_back"
             android:gravity="center_vertical"
             android:hint="输入您想购买的宝贝（例如：女装）"
             android:maxLength="16"

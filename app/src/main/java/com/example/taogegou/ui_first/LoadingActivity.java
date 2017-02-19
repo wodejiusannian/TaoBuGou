@@ -19,7 +19,8 @@ import java.util.List;
 public class LoadingActivity extends AppCompatActivity implements View.OnClickListener {
     private ViewPager mViewPager;
     private List<ImageView> mImages;
-    private int[] images = {R.mipmap.buy1,R.mipmap.buy2,R.mipmap.buy3};
+    private int[] images = {R.mipmap.buy1, R.mipmap.buy2};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class LoadingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void setListner() {
-        mImages.get(2).setOnClickListener(this);
+        mImages.get(1).setOnClickListener(this);
     }
 
     private void setData() {
@@ -46,10 +47,10 @@ public class LoadingActivity extends AppCompatActivity implements View.OnClickLi
 
     private void initData() {
         mImages = new ArrayList<>();
-        for(int i = 0; i < 3; i++) {
-          ImageView image = new ImageView(this);
-          image.setImageResource(images[i]);
-          mImages.add(image);
+        for (int i = 0; i < 2; i++) {
+            ImageView image = new ImageView(this);
+            image.setImageResource(images[i]);
+            mImages.add(image);
         }
     }
 
@@ -60,7 +61,7 @@ public class LoadingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        ActivityUtils.switchTo(this,MainActivity.class);
+        ActivityUtils.switchTo(this, MainActivity.class);
         finish();
     }
 }

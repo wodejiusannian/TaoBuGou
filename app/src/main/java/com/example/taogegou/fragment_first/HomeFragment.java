@@ -13,10 +13,16 @@ import android.widget.ImageView;
 import com.example.taogegou.R;
 import com.example.taogegou.adapter.HomeAdapter_vp;
 import com.example.taogegou.base.BaseFragment;
-import com.example.taogegou.fragment_second.Fragment_Baby_Cosmetic;
-import com.example.taogegou.fragment_second.Fragment_Clothing_Acc;
-import com.example.taogegou.fragment_second.Fragment_Electrical_Product;
-import com.example.taogegou.fragment_second.Fragment_Food_Live;
+import com.example.taogegou.fragment_second.Fragment_bag;
+import com.example.taogegou.fragment_second.Fragment_car;
+import com.example.taogegou.fragment_second.Fragment_child_dress;
+import com.example.taogegou.fragment_second.Fragment_huazhuangpin;
+import com.example.taogegou.fragment_second.Fragment_jujiayongpin;
+import com.example.taogegou.fragment_second.Fragment_live;
+import com.example.taogegou.fragment_second.Fragment_man_dress;
+import com.example.taogegou.fragment_second.Fragment_neiyi;
+import com.example.taogegou.fragment_second.Fragment_tea;
+import com.example.taogegou.fragment_second.Fragment_women_dress;
 import com.example.taogegou.ui_second.SearchActivity;
 import com.example.taogegou.utils.ActivityUtils;
 
@@ -67,20 +73,52 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         super.initData();
         mData = new ArrayList<>();
         mTitles = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            if (i == 0) {
-                mData.add(new Fragment_Clothing_Acc());
-                mTitles.add("衣服 | 配饰");
-            } else if (i == 1) {
-                mData.add(new Fragment_Baby_Cosmetic());
-                mTitles.add("母婴 | 美肤");
-            } else if (i == 2) {
-                mData.add(new Fragment_Food_Live());
-                mTitles.add("美食 | 居家");
-            } else if (i == 3) {
-                mData.add(new Fragment_Electrical_Product());
-                mTitles.add("文体 | 百货");
+        for (int i = 0; i < 10; i++) {
+            switch (i) {
+                case 0:
+                    mData.add(new Fragment_women_dress());
+                    mTitles.add("女装");
+                    break;
+                case 1:
+                    mData.add(new Fragment_man_dress());
+                    mTitles.add("男装");
+                    break;
+                case 2:
+                    mData.add(new Fragment_child_dress());
+                    mTitles.add("童装");
+                    break;
+                case 3:
+                    mData.add(new Fragment_huazhuangpin());
+                    mTitles.add("化妆品");
+                    break;
+                case 4:
+                    mData.add(new Fragment_jujiayongpin());
+                    mTitles.add("居家用品");
+                    break;
+                case 5:
+                    mData.add(new Fragment_bag());
+                    mTitles.add("鞋 | 包");
+                    break;
+                case 6:
+                    mData.add(new Fragment_tea());
+                    mTitles.add("茶 | 养生 | 酒水");
+                    break;
+                case 7:
+                    mData.add(new Fragment_car());
+                    mTitles.add("汽车用品 | 文具");
+                    break;
+                case 8:
+                    mData.add(new Fragment_live());
+                    mTitles.add("生活用品 | 电子商品");
+                    break;
+                case 9:
+                    mData.add(new Fragment_neiyi());
+                    mTitles.add("内衣");
+                    break;
+                default:
+                    break;
             }
+
         }
         mAdapter = new HomeAdapter_vp(getFragmentManager(), mData, mTitles);
         mHandler.sendEmptyMessageDelayed(1, 10000);
@@ -98,6 +136,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         super.setData();
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
 
     @Override

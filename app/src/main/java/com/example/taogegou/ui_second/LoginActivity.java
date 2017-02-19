@@ -3,7 +3,6 @@ package com.example.taogegou.ui_second;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +18,8 @@ import com.example.taogegou.ui_third.RegisterActivity;
 import com.example.taogegou.utils.ActivityUtils;
 import com.example.taogegou.utils.MySharedPreferences;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -26,8 +27,9 @@ import org.xutils.x;
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mImageViewBack;
     private Button mButtonLogin;
-    private EditText mEditTextPhone,mEditTextPWD;
-    private TextView mTextRegister,mTextViewFound;
+    private EditText mEditTextPhone, mEditTextPWD;
+    private TextView mTextRegister, mTextViewFound;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         mButtonLogin = (Button) findViewById(R.id.btn_login_login);
         mEditTextPhone = (EditText) findViewById(R.id.et_login_phone);
         mEditTextPWD = (EditText) findViewById(R.id.et_login_pwd);
-        mTextRegister= (TextView) findViewById(R.id.tv_login_register);
+        mTextRegister = (TextView) findViewById(R.id.tv_login_register);
         mTextViewFound = (TextView) findViewById(R.id.tv_login_found_pwd);
     }
 
@@ -64,7 +66,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.iv_login_back:
                 finish();
                 break;
@@ -82,28 +84,38 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 break;
         }
     }
+
     //登录的方法
     private void login() {
         String phone = mEditTextPhone.getText().toString().trim();
         String pwd = mEditTextPWD.getText().toString().trim();
-        if (!TextUtils.isEmpty(phone)&&!TextUtils.isEmpty(pwd)){
-            if (phone.length()==11){
+        if (!TextUtils.isEmpty(phone) && !TextUtils.isEmpty(pwd)) {
+            if (phone.length() == 11) {
                 String loginUrl = String.format(NetConfig.LOGIN_PATH_PHONE, phone, pwd);
                 RequestParams params = new RequestParams(loginUrl);
                 x.http().get(params, new Callback.CommonCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
-                        Log.i("TAG", "result"+result);
-                        int parseInt = Integer.parseInt(result);
-                        if (parseInt>0){
-                            MySharedPreferences.WriteUserId(LoginActivity.this,result);
+                        try {
+                            JSONObject object = new JSONObject(result);
+                            String userID = object.getString("userID");
+                            String headPortrait = object.getString("headPortrait");
+                            MySharedPreferences.WriteUserId(LoginActivity.this, userID);
+                            if (!TextUtils.isEmpty(headPortrait)) {
+                                MySharedPreferences.WriteUserInfo(LoginActivity.this, "TBG_146" + userID, headPortrait);
+                            } else {
+                                MySharedPreferences.WriteUserInfo(LoginActivity.this, "TBG_146" + userID, "www");
+                            }
                             Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                             sendBroad();
                             finish();
-                        }else if (parseInt == -6){
-                            Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
-                        }else if (parseInt == -5){
-                            Toast.makeText(LoginActivity.this, "亲，此手机号还没有注册哦，可以使用手机号快速注册", Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            int parseInt = Integer.parseInt(result);
+                            if (parseInt == -6) {
+                                Toast.makeText(LoginActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
+                            } else if (parseInt == -5) {
+                                Toast.makeText(LoginActivity.this, "亲，此手机号还没有注册哦，可以使用手机号快速注册", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                     }
@@ -123,16 +135,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                     }
                 });
-            }else{
+            } else {
                 Toast.makeText(LoginActivity.this, "亲，请输入正确的手机号哦", Toast.LENGTH_SHORT).show();
             }
 
-        }else {
+        } else {
             Toast.makeText(LoginActivity.this, "亲，账号或者用户名不能为空哦", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void sendBroad(){
+    public void sendBroad() {
         Intent intent = new Intent();
         intent.setAction("action.refreshFriend");
         sendBroadcast(intent);

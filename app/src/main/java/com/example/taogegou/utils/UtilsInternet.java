@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class UtilsInternet {
 
-    private  static UtilsInternet instance;
+    private static UtilsInternet instance;
 
     private Handler handler;
 
@@ -101,7 +101,7 @@ public class UtilsInternet {
 
     public void upLoadFile(String url, Map<String, String> maps, Map<String, File> file, final XCallBack callback) {
         RequestParams params = new RequestParams(url);
-        if (maps != null && !maps.isEmpty()) {
+        if (maps != null) {
             for (Map.Entry<String, String> entry : maps.entrySet()) {
                 params.addBodyParameter(entry.getKey(), entry.getValue());
             }
@@ -136,6 +136,7 @@ public class UtilsInternet {
         });
 
     }
+
     /**
      * 异步get请求返回结果,json字符串
      *
