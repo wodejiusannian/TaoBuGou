@@ -31,6 +31,14 @@
 
         </TextView>
 
+        <ImageView
+            android:id="@+id/iv_buy_share_app"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_5"
+            android:src="@mipmap/share_app" />
     </RelativeLayout>
 
     <ProgressBar

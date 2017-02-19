@@ -140,6 +140,7 @@ public class MainActivity extends BaseActivity implements /*RadioGroup.OnChecked
         }
     };*/
 
+
 /*
     public void setFresh(ReFreshUserInfo info) {
         mInfo = info;
@@ -205,7 +206,7 @@ public class MainActivity extends BaseActivity implements /*RadioGroup.OnChecked
         //2.删除已存在的Apk
         DownloadApk.removeFile(this);
         if (DownLoadUtils.getInstance(getApplicationContext()).canDownload()) {
-            DownloadApk.downloadApk(getApplicationContext(), "http://101.201.36.18:8080/apk/HuiMei.apk", "淘不够正在更新...", "downloadApk");
+            DownloadApk.downloadApk(getApplicationContext(), "http://hmyc365.net:8081/file/wb/apk/longwen.apk", "淘不够更新", "Hobbees");
         } else {
             DownLoadUtils.getInstance(getApplicationContext()).skipToDownloadManager();
         }

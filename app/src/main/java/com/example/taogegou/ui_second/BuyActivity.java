@@ -14,11 +14,12 @@ import android.widget.TextView;
 import com.example.taogegou.R;
 import com.example.taogegou.base.BaseActivity;
 import com.example.taogegou.config.NetConfig;
+import com.example.taogegou.mob.Share;
 
 public class BuyActivity extends BaseActivity implements View.OnClickListener {
     private String url, buyUrl;
     private WebView mWebView;
-    private ImageView mImageViewBack;
+    private ImageView mImageViewBack, mShareApp;
     private ProgressBar mLoading;
     private TextView mTitle;
 
@@ -34,6 +35,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         mImageViewBack = (ImageView) findViewById(R.id.iv_buy_back);
         mLoading = (ProgressBar) findViewById(R.id.pb_buy_loading);
         mTitle = (TextView) findViewById(R.id.tv_buy_title);
+        mShareApp = (ImageView) findViewById(R.id.iv_buy_share_app);
     }
 
     @Override
@@ -97,6 +99,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void setListener() {
         mImageViewBack.setOnClickListener(this);
+        mShareApp.setOnClickListener(this);
     }
 
     @Override
@@ -105,7 +108,9 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
             case R.id.iv_buy_back:
                 finish();
                 break;
-
+            case R.id.iv_buy_share_app:
+                Share.showShare(this, "淘不够", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "https://fir.im/rpd4", "https://fir.im/rpd4");
+                break;
             default:
 
                 break;
