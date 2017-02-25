@@ -19,7 +19,7 @@ import com.example.taogegou.mob.Share;
 public class BuyActivity extends BaseActivity implements View.OnClickListener {
     private String url, buyUrl;
     private WebView mWebView;
-    private ImageView mImageViewBack, mShareApp;
+    private ImageView mImageViewBack, mShareApp, mShareShop;
     private ProgressBar mLoading;
     private TextView mTitle;
 
@@ -36,6 +36,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         mLoading = (ProgressBar) findViewById(R.id.pb_buy_loading);
         mTitle = (TextView) findViewById(R.id.tv_buy_title);
         mShareApp = (ImageView) findViewById(R.id.iv_buy_share_app);
+        mShareShop = (ImageView) findViewById(R.id.iv_buy_share_shop);
     }
 
     @Override
@@ -100,6 +101,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
     public void setListener() {
         mImageViewBack.setOnClickListener(this);
         mShareApp.setOnClickListener(this);
+        mShareShop.setOnClickListener(this);
     }
 
     @Override
@@ -109,7 +111,10 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.iv_buy_share_app:
-                Share.showShare(this, "淘不够", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "https://fir.im/rpd4", "https://fir.im/rpd4");
+                Share.showShareApp(this, "淘不够", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "https://fir.im/rpd4", "https://fir.im/rpd4");
+                break;
+            case R.id.iv_buy_share_shop:
+                Share.showShareShop(this, "title", "title", "sha", buyUrl, buyUrl);
                 break;
             default:
 

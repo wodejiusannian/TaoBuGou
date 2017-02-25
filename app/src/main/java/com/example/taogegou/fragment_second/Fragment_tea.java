@@ -127,7 +127,6 @@ public class Fragment_tea extends BaseFragment implements SwipeRefreshLayout.OnR
     /*刷新数据*/
     @Override
     public void onRefresh() {
-        mData.clear();
         loadMore(1);
         mRefreshLayout.setRefreshing(false);
     }

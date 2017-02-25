@@ -96,7 +96,8 @@ public class Fragment_price extends BaseFragment implements SwipeRefreshLayout.O
 
     @Override
     public void onRefresh() {
-        loadMore(1);
+        page = 1;
+        loadMore(page);
         mRefresh.setRefreshing(false);
     }
 

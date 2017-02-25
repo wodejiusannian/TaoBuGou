@@ -42,6 +42,9 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        if (mData.size() == 0) {
+            return;
+        }
         JsonBean bean = mData.get(position);
         String pic = bean.getPic();
         String title = bean.getTitle();

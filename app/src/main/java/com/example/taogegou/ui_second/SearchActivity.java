@@ -2,6 +2,7 @@ package com.example.taogegou.ui_second;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,7 +17,7 @@ import com.example.taogegou.utils.ActivityUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SearchActivity extends BaseActivity implements View.OnClickListener {
+public class SearchActivity extends BaseActivity implements View.OnClickListener, View.OnKeyListener {
     private ImageView mBack;
     private String title;
     private EditText mWrite;
@@ -67,6 +68,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     public void setListener() {
         mBack.setOnClickListener(this);
         mGo.setOnClickListener(this);
+        mWrite.setOnKeyListener(this);
     }
 
     @Override
@@ -76,18 +78,22 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.iv_search_go:
-                String write = mWrite.getText().toString().trim();
-                String hintWrite = mWrite.getHint().toString().trim();
-                if (!TextUtils.isEmpty(write)) {
-                    //搜索的方法
-                    goSearch(write);
-                } else {
-                    goSearch(hintWrite);
-                }
+                searchGo();
                 break;
             default:
 
                 break;
+        }
+    }
+
+    private void searchGo() {
+        String write = mWrite.getText().toString().trim();
+        String hintWrite = mWrite.getHint().toString().trim();
+        if (!TextUtils.isEmpty(write)) {
+            //搜索的方法
+            goSearch(write);
+        } else {
+            goSearch(hintWrite);
         }
     }
 
@@ -96,5 +102,13 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         Map<String, Object> map = new HashMap<>();
         map.put("search", search);
         ActivityUtils.switchTo(this, ResultActivity.class, map);
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+            searchGo();
+        }
+        return true;
     }
 }

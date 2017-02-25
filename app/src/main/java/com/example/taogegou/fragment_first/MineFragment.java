@@ -21,7 +21,6 @@ import com.example.taogegou.custom.MySelfDialog;
 import com.example.taogegou.inter.MyThirdData;
 import com.example.taogegou.inter.ReFreshUserInfo;
 import com.example.taogegou.mob.Login;
-import com.example.taogegou.mob.Share;
 import com.example.taogegou.ui_first.MainActivity;
 import com.example.taogegou.ui_second.LoginActivity;
 import com.example.taogegou.ui_second.SettingActivity;
@@ -146,7 +145,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
             case R.id.ll_mine_share:
                 if (!TextUtils.isEmpty(userId)) {
                     String shareUrl = getShareUrl();
-                    Share.showShare(getContext(), "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
+                    //Share.showShare(getContext(), "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
                 } else {
                     noLoginButShare();
                 }
@@ -264,7 +263,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
             @Override
             public void onClick() {
                 String shareUrl = getShareUrl();
-                Share.showShare(getContext(), "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
+                //Share.showShare(getContext(), "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
             }
         });
         mySelfDialog.show();

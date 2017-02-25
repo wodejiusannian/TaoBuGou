@@ -13,7 +13,6 @@ import com.example.taogegou.base.BaseActivity;
 import com.example.taogegou.bean.Logistic;
 import com.example.taogegou.config.NetConfig;
 import com.example.taogegou.custom.MySelfDialog;
-import com.example.taogegou.mob.Share;
 import com.example.taogegou.ui_second.LoginActivity;
 import com.example.taogegou.utils.ActivityUtils;
 import com.example.taogegou.utils.MySharedPreferences;
@@ -98,7 +97,7 @@ public class LogisticActivity extends BaseActivity implements UtilsInternet.XCal
     @Override
     public void onClick() {
         String shareUrl = getShareUrl();
-        Share.showShare(this, "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
+        //Share.showShare(this, "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
     }
 
     private String getShareUrl() {

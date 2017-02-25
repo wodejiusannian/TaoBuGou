@@ -127,7 +127,6 @@ public class Fragment_neiyi extends BaseFragment implements SwipeRefreshLayout.O
     /*刷新数据*/
     @Override
     public void onRefresh() {
-        mData.clear();
         loadMore(1);
         mRefreshLayout.setRefreshing(false);
     }

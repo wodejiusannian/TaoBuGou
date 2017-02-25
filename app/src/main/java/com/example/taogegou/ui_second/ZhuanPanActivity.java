@@ -17,7 +17,6 @@ import com.example.taogegou.base.BaseActivity;
 import com.example.taogegou.config.NetConfig;
 import com.example.taogegou.custom.LuckyPanView;
 import com.example.taogegou.custom.MySelfDialog;
-import com.example.taogegou.mob.Share;
 import com.example.taogegou.utils.MySharedPreferences;
 import com.example.taogegou.utils.Utils;
 import com.example.taogegou.utils.UtilsInternet;
@@ -150,7 +149,7 @@ public class ZhuanPanActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick() {
         String shareUrl = getShareUrl();
-        Share.showShare(this, "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
+        //Share.showShare(this, "我是尝试分享", "开始分享了", "这个是内容", shareUrl, shareUrl);
     }
 
     private void showLoginDialog() {
