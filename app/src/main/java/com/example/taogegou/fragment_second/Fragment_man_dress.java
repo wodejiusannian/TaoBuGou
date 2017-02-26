@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Fragment_man_dress extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
+public class  Fragment_man_dress extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private RecyclerView mRecycleView;
     private SwipeRefreshLayout mRefreshLayout;
     private List<JsonBean> mData;

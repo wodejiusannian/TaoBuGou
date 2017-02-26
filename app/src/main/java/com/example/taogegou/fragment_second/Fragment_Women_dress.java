@@ -242,11 +242,19 @@ public class Fragment_women_dress extends BaseFragment implements SwipeRefreshLa
                 String goodsID = jsonBean.getGoodsID();
                 String quan_price = jsonBean.getQuan_price();
                 String quan_id = jsonBean.getQuan_id();
+                String imagePath = jsonBean.getPic();
+                String title = jsonBean.getTitle();
+                String org_price = jsonBean.getPrice();
+                String base_price = jsonBean.getOrg_Price();
                 map.put("url", url);
                 map.put("GoodsID", goodsID);
                 map.put("IsTmall", isTmall);
                 map.put("quan_price", quan_price);
                 map.put("quan_id", quan_id);
+                map.put("imagePath", imagePath);
+                map.put("title", title);
+                map.put("base_price", base_price);
+                map.put("after_price", org_price);
                 ActivityUtils.switchTo(getActivity(), BuyActivity.class, map);
                 break;
             case R.id.ll_shop_recommend:

@@ -2,7 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".fragment_second.Fragment_women_dress">
+             tools:context=".fragment_first.Fragment_women_dress">
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/sf_fragment_food_refresh"
         android:layout_width="match_parent"

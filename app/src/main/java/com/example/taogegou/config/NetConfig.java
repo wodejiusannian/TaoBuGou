@@ -18,9 +18,10 @@ public interface NetConfig {
     //转链接口
     /*mm_103424431_12490887_47302518   wubo pid*/
     /*mm_111980370_13448108_54518145   wushuang pid*/
-    /*mm_114562371_20984473_70926435   longwen pid*/
+    /*mm_114562371_20984473_70926435   renzhenlu pid*/
     /*mm_49570617_13536647_53448205    weiwei*/
-    String TRANSLATE_PATH = "https://uland.taobao.com/coupon/edetail?activityId=%s&itemId=%s&pid=mm_49570617_13536647_53448205&src=mdk_mdktk&dx=1&nowake=1";
+    /*mm_121226805_21688715_72582403     longwen*/
+    String TRANSLATE_PATH = "https://uland.taobao.com/coupon/edetail?activityId=%s&itemId=%s&pid=mm_121226805_21688715_72582403&src=mdk_mdktk&dx=1&nowake=1";
     //是否更新的接口
     String IS_FRESH_PATH = "http://hmyc365.net:8080/HuiMei/appVersion!getAndVersion.action";
     //一等奖接口

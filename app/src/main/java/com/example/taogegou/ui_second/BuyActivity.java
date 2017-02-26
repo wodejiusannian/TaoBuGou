@@ -2,12 +2,15 @@ package com.example.taogegou.ui_second;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,11 +20,12 @@ import com.example.taogegou.config.NetConfig;
 import com.example.taogegou.mob.Share;
 
 public class BuyActivity extends BaseActivity implements View.OnClickListener {
-    private String url, buyUrl;
+    private String imagePath, buyUrl, title, content;
     private WebView mWebView;
-    private ImageView mImageViewBack, mShareApp, mShareShop;
+    private ImageView mImageViewBack, mShareApp;
     private ProgressBar mLoading;
     private TextView mTitle;
+    private PopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         mLoading = (ProgressBar) findViewById(R.id.pb_buy_loading);
         mTitle = (TextView) findViewById(R.id.tv_buy_title);
         mShareApp = (ImageView) findViewById(R.id.iv_buy_share_app);
-        mShareShop = (ImageView) findViewById(R.id.iv_buy_share_shop);
     }
 
     @Override
@@ -44,8 +47,12 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
         Intent intent = getIntent();
         String GoodsID = intent.getStringExtra("GoodsID");
         String quan_id = intent.getStringExtra("quan_id");
+        imagePath = intent.getStringExtra("imagePath");
+        title = intent.getStringExtra("title");
+        String base_price = intent.getStringExtra("base_price");
+        String after_price = intent.getStringExtra("after_price");
         buyUrl = String.format(NetConfig.TRANSLATE_PATH, quan_id, GoodsID);
-
+        content = "我正在淘不够购买此商品，原价¥" + base_price + "券后¥" + after_price + "优惠券点击领取";
     }
 
     @Override
@@ -61,7 +68,7 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
             }
         });
         WebSettings webSettings = mWebView.getSettings();
-//支持js
+        //支持js
         webSettings.setJavaScriptEnabled(true);
         //支持对网页缩放
         webSettings.setSupportZoom(true);
@@ -101,7 +108,6 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
     public void setListener() {
         mImageViewBack.setOnClickListener(this);
         mShareApp.setOnClickListener(this);
-        mShareShop.setOnClickListener(this);
     }
 
     @Override
@@ -111,14 +117,53 @@ public class BuyActivity extends BaseActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.iv_buy_share_app:
-                Share.showShareApp(this, "淘不够", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "https://fir.im/rpd4", "https://fir.im/rpd4");
+                getPopupWindow();
+                popupWindow.showAsDropDown(v);
                 break;
-            case R.id.iv_buy_share_shop:
-                Share.showShareShop(this, "title", "title", "sha", buyUrl, buyUrl);
+            case R.id.ll_show_pop_share_app:
+                Share.showShareApp(this, "淘不够", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "淘不够包含近十万款天猫淘宝优惠商品，半价销售", "https://fir.im/rpd4", "https://fir.im/rpd4");
+                popupWindow.dismiss();
+                break;
+            case R.id.ll_show_pop_share_shop:
+                Share.showShareShop(this, title, content, content, buyUrl, buyUrl, imagePath);
+                popupWindow.dismiss();
                 break;
             default:
 
                 break;
+        }
+    }
+
+
+    /**
+     * 创建PopupWindow
+     */
+    protected void initPopuptWindow() {
+        View view = getLayoutInflater().inflate(R.layout.show_pop, null);
+        View share_shop = view.findViewById(R.id.ll_show_pop_share_shop);
+        View share_app = view.findViewById(R.id.ll_show_pop_share_app);
+        share_app.setOnClickListener(this);
+        share_shop.setOnClickListener(this);
+        // 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
+        popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (popupWindow != null && popupWindow.isShowing()) {
+                    popupWindow.dismiss();
+                    popupWindow = null;
+                }
+                return false;
+            }
+        });
+    }
+
+    private void getPopupWindow() {
+        if (null != popupWindow) {
+            popupWindow.dismiss();
+            return;
+        } else {
+            initPopuptWindow();
         }
     }
 }
